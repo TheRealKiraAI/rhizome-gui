@@ -19,7 +19,7 @@ class _AppState extends State<App> {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(title: 'Rhizome GUI'),
     );
   }
 }
