@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     final lewisHamilton = everything[2];
 
     print('========== Experiencing Test ==========');
-    experienceThing(lewisHamilton, everything);
+    Thing thing1 = experienceThing(lewisHamilton, everything);
 
     return Scaffold(
       appBar: AppBar(
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             child: Card(
               color: Colors.lightBlueAccent,
               child: Center(
-                child: Text('Experiencing. Focusing on Thing.'),
+                child: Text('Experiencing. Focusing on Thing. ${thing1.information}'),
               ),
             ),
             // child: Text(
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void experienceThing(Thing thing, List<Thing> everything) {
+  Thing experienceThing(Thing thing, List<Thing> everything) {
     final rhizome = Rhizome();
     tagInformation(rhizome);
 
@@ -94,6 +94,7 @@ class _HomePageState extends State<HomePage> {
     print('Targets:');
     final targets = thing.targets.map((uri) => rhizome.retrieve(uri));
     targets.forEach((tag) => print(tag.information));
+    return thing;
   }
 
   void tagInformation(Rhizome rhizome) {
