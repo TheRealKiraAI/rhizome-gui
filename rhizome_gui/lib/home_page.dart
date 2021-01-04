@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
 
     // Now that we have some Things in the Rhizome, let's play with it. 
     // Display all of the information in the world.
-    final everything = displayEverythingPrint(rhizome);
+    final everything = displayEverything(rhizome);
 
     // Imagine that the user indicates they wish to focus on one piece of
     // information. Say, Lewis Hamilton.
@@ -47,17 +47,12 @@ class _HomePageState extends State<HomePage> {
     final motorsportTargets = motorsportThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
 
-    print(everything[2]);
     return everything;
   }
 
   @override
   Widget build(BuildContext context) {
     List<Thing> everything = _initRhizome();
-    final lewisHamilton = everything[2];
-
-    print('========== Experiencing Test ==========');
-    Thing thing1 = experienceThing(lewisHamilton, everything);
 
     return Scaffold(
       appBar: AppBar(
@@ -65,12 +60,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(everything.length, (index) {
+        children: List.generate(1, (index) {
           return Container(
             child: Card(
               color: Colors.lightBlueAccent,
               child: Center(
-                child: Text('Experiencing. Focusing on Thing. ${thing1.information}'),
+                child: visualizeThing(everything),
               ),
             ),
             // child: Text(
@@ -87,6 +82,7 @@ class _HomePageState extends State<HomePage> {
     final rhizome = Rhizome();
     tagInformation(rhizome);
 
+    print('Experiencing. Focusing on Thing: ');
     print(thing.information);
     print('Tags:');
     final tags = thing.tags.map((uri) => rhizome.retrieve(uri));
@@ -95,6 +91,18 @@ class _HomePageState extends State<HomePage> {
     final targets = thing.targets.map((uri) => rhizome.retrieve(uri));
     targets.forEach((tag) => print(tag.information));
     return thing;
+  }
+
+  Widget visualizeThing(List<Thing> everything) {
+    Text textWidget;
+
+    final lewisHamilton = everything[2];
+
+    print('========== Experiencing Test ==========');
+    Thing thing1 = experienceThing(lewisHamilton, everything);
+    textWidget = Text('${thing1.information}');
+
+    return textWidget;
   }
 
   void tagInformation(Rhizome rhizome) {
@@ -115,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     senna.tagWith(f1);
   }
 
-  displayEverythingPrint(Rhizome rhizome) {
+  displayEverything(Rhizome rhizome) {
     final everything = rhizome.query();
     print('Exploring. Rhizome contains: \n');
     everything.forEach((thing) {
@@ -123,16 +131,6 @@ class _HomePageState extends State<HomePage> {
     });
 
     print('\n');
-    return everything;
-  }
-
-    displayEverythingText(Rhizome rhizome) {
-    final everything = rhizome.query();
-
-    everything.forEach((thing) {
-      Text('${thing}');
-    });
-
     return everything;
   }
 
