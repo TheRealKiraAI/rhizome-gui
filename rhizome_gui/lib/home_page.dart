@@ -11,14 +11,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  Rhizome _initRhizome() {
+  List<Thing> _initRhizome() {
     final rhizome = Rhizome();
   
     tagInformation(rhizome);
 
     // Now that we have some Things in the Rhizome, let's play with it. 
     // Display all of the information in the world.
-    final everything = displayEverything(rhizome);
+    final everything = displayEverythingPrint(rhizome);
 
     // Imagine that the user indicates they wish to focus on one piece of
     // information. Say, Lewis Hamilton.
@@ -47,39 +47,53 @@ class _HomePageState extends State<HomePage> {
     final motorsportTargets = motorsportThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
 
-    return rhizome;
+    print(everything[2]);
+    return everything;
   }
 
   @override
   Widget build(BuildContext context) {
-    
-    Rhizome r;
-    r = _initRhizome();
+    List<Thing> everything = _initRhizome();
+    final lewisHamilton = everything[2];
+
+    print('========== Experiencing Test ==========');
+    experienceThing(lewisHamilton, everything);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: displayThings(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: List.generate(everything.length, (index) {
+          return Container(
+            child: Card(
+              color: Colors.lightBlueAccent,
+              child: Center(
+                child: Text('Experiencing. Focusing on Thing.'),
+              ),
+            ),
+            // child: Text(
+            //   'Item $index',
+            //   style: Theme.of(context).textTheme.headline5,
+            // ),
+          );
+        }),
       ),
     );
   }
 
-  Widget displayThings() {
-    return Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Experiencing. Focusing on Thing: '),
-          ],
-        )
-      )
-    );
+  void experienceThing(Thing thing, List<Thing> everything) {
+    final rhizome = Rhizome();
+    tagInformation(rhizome);
+
+    print(thing.information);
+    print('Tags:');
+    final tags = thing.tags.map((uri) => rhizome.retrieve(uri));
+    tags.forEach((tag) => print(tag.information));
+    print('Targets:');
+    final targets = thing.targets.map((uri) => rhizome.retrieve(uri));
+    targets.forEach((tag) => print(tag.information));
   }
 
   void tagInformation(Rhizome rhizome) {
@@ -100,13 +114,45 @@ class _HomePageState extends State<HomePage> {
     senna.tagWith(f1);
   }
 
-  displayEverything(Rhizome rhizome) {
+  displayEverythingPrint(Rhizome rhizome) {
     final everything = rhizome.query();
     print('Exploring. Rhizome contains: \n');
-    everything.forEach((thing) => print('${thing}\n'));
+    everything.forEach((thing) {
+      print('${thing}\n');
+    });
 
     print('\n');
     return everything;
+  }
+
+    displayEverythingText(Rhizome rhizome) {
+    final everything = rhizome.query();
+
+    everything.forEach((thing) {
+      Text('${thing}');
+    });
+
+    return everything;
+  }
+
+  Widget displayThings(Thing thing) {
+    return Container(
+      width: 240.0,
+      height: 42.0,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        border: Border.all(
+          color: Colors.black,
+          width: 5.0
+        )
+      ),
+      child: Center(
+        child: Text(
+          thing.toString(),
+          textAlign: TextAlign.center,
+        ),
+      )
+    );
   }
 
 }
