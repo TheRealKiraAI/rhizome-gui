@@ -1,4 +1,5 @@
 import 'package:rhizome_gui/rhizome_gui.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title, this.rhizome}) : super(key: key);
@@ -27,8 +28,9 @@ class _HomePageState extends State<HomePage> {
           return GridView.count(
             crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
             children: <Widget> [
-              for(var thing in widget.rhizome.query()) thingCard(thing)
+              for(var thing in widget.rhizome.query()) ThingCard(thing: thing)
             ],
+            // children: widget.rhizome.query().map { ThingCard(thing) }.toList()
           );
         }
       ),
@@ -46,14 +48,5 @@ class _HomePageState extends State<HomePage> {
     });
 
     return textWidget;
-  }
-
-  Widget thingCard(Thing thing) {
-    return Card(
-      color: Colors.lightBlueAccent,
-      child: Center(
-        child: Text(thing.information),
-      ),
-    );
   }
 }
