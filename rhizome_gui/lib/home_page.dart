@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget> [
               for(var thing in widget.rhizome.query()) ThingCard(thing: thing)
             ],
-            // children: widget.rhizome.query().map { ThingCard(thing) }.toList()
+            //children: widget.rhizome.query().map { ThingCard(thing) }.toList()
           );
         }
       ),

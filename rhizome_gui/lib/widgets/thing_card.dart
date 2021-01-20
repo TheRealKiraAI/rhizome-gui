@@ -7,10 +7,16 @@ class ThingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.lightBlueAccent,
-      child: Center(
-        child: Text(thing.information),
+    return TextButton(
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(Colors.deepOrange),
+      ),
+      onPressed: () => print("pushed"),
+      child: Card(
+        color: Colors.lightBlueAccent,
+        child: Center(
+          child: Text(thing.information),
+        ),
       ),
     );
   }
