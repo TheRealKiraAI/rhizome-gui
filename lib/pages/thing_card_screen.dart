@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 
-class ThingCardPage extends StatefulWidget {
-  ThingCardPage({Key key, this.thing}) : super(key: key);
+class ThingCardScreen extends StatefulWidget {
+  ThingCardScreen({Key key, this.thing}) : super(key: key);
 
-  final String title = "Thing Page";
+  final String title = "Thing Screen";
   final Thing thing;
 
   @override
-  _ThingCardPageState createState() => _ThingCardPageState();
+  _ThingCardScreenState createState() => _ThingCardScreenState();
 }
 
-class _ThingCardPageState extends State<ThingCardPage> {
+class _ThingCardScreenState extends State<ThingCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

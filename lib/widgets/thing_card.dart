@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import '../pages/thing_card_page.dart';
+import '../pages/thing_card_screen.dart';
 
 class ThingCard extends StatelessWidget {
   final Thing thing;
@@ -17,7 +17,7 @@ class ThingCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ThingCardPage(thing: thing)))
+                builder: (context) => ThingCardScreen(thing: thing)))
       },
       child: Card(
         color: Colors.lightBlueAccent,
