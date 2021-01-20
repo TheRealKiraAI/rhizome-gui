@@ -12,28 +12,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
-
     // function: Card ThingCard(Thing thing)
     // iterate through map to add everything to ThingCard
-    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: OrientationBuilder(
-        builder: (context, orientation) {
-          return GridView.count(
-            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-            children: <Widget> [
-              for(var thing in widget.rhizome.query()) ThingCard(thing: thing)
-            ],
-            //children: widget.rhizome.query().map { ThingCard(thing) }.toList()
-          );
-        }
-      ),
+      body: OrientationBuilder(builder: (context, orientation) {
+        return GridView.count(
+          crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+          children: <Widget>[
+            for (var thing in widget.rhizome.query()) ThingCard(thing: thing)
+          ],
+          //children: widget.rhizome.query().map { ThingCard(thing) }.toList()
+        );
+      }),
     );
   }
 
