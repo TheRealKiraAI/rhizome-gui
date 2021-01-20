@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
     everything.forEach((thing) {
       print('========== Experiencing Test ==========');
-      print('${thing}');
+      print('$thing');
       textWidget = Text('${thing.information}');
     });
 
