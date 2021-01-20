@@ -1,5 +1,6 @@
-import 'package:rhizome_gui/rhizome_gui.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:flutter/material.dart';
+import 'package:rhizome/rhizome.dart';
+import 'widgets/thing_card.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title, this.rhizome}) : super(key: key);
