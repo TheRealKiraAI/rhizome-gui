@@ -1,3 +1,4 @@
+import 'package:rhizome_gui/pages/thing_card_page.dart';
 import 'package:rhizome_gui/rhizome_gui.dart';
 
 class ThingCard extends StatelessWidget {
@@ -11,7 +12,10 @@ class ThingCard extends StatelessWidget {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(Colors.deepOrange),
       ),
-      onPressed: () => print("pushed"),
+      onPressed: () => {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => ThingCardPage(thing: thing)))
+      },
       child: Card(
         color: Colors.lightBlueAccent,
         child: Center(
