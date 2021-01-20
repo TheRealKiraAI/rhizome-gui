@@ -6,9 +6,8 @@ void main() {
 }
 
 Rhizome initRhizome() {
-
   final rhizome = Rhizome();
-  
+
   // Typically, the rhizome will already have information, but in this example
   // it doesn't. Let's seed the rhizome with some information.
   final f1 = rhizome.store('Formula 1');
@@ -30,7 +29,7 @@ Rhizome initRhizome() {
   // Display all of the information in the world.
   final everything = rhizome.query();
   print('Exploring. Rhizome contains: \n');
-  everything.forEach((thing) => print('${thing}\n'));
+  everything.forEach((thing) => print('$thing\n'));
 
   print('\n');
 
@@ -45,7 +44,7 @@ Rhizome initRhizome() {
   print('Targets:');
   final targets = lewisHamilton.targets.map((uri) => rhizome.retrieve(uri));
   targets.forEach((tag) => print(tag.information));
-  
+
   print('\n');
 
   // Let's say they want to see if they can view the concept of 'Motorsport'.
@@ -55,11 +54,13 @@ Rhizome initRhizome() {
   final motorsportThing = rhizome.seek('Motorsport');
   print(motorsportThing.information);
   print('Tags:');
-  final motorsportTags = motorsportThing.tags.map((uri) => rhizome.retrieve(uri));
+  final motorsportTags =
+      motorsportThing.tags.map((uri) => rhizome.retrieve(uri));
   motorsportTags.forEach((tag) => print(tag.information));
   print('Targets:');
-  final motorsportTargets = motorsportThing.targets.map((uri) => rhizome.retrieve(uri));
-  motorsportTargets.forEach((tag) => print(tag.information)); 
+  final motorsportTargets =
+      motorsportThing.targets.map((uri) => rhizome.retrieve(uri));
+  motorsportTargets.forEach((tag) => print(tag.information));
 
   return rhizome;
 }
