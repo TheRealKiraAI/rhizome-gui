@@ -28,24 +28,12 @@ class _HomePageState extends State<HomePage> {
             height: 400, // constrain height
             child: GridView.count(
               crossAxisCount: 2,
-              // children: rhizome.query().map ( {thing} )
-              children: List.generate(1, (index) {
-                return Container(
-                  child: Card(
-                    color: Colors.lightBlueAccent,
-                    child: Center(
-                      child: visualizeOneThing(widget.rhizome),
-                    ),
-                  ),
-                  // child: Text(
-                  //   'Item $index',
-                  //   style: Theme.of(context).textTheme.headline5,
-                  // ),
-                );
-              }),
+              children: [ 
+                for(var thing in widget.rhizome.query()) thingCard(thing)
+              ],
             ),
           ),
-        ]
+        ],
       ),
     );
   }
@@ -61,5 +49,14 @@ class _HomePageState extends State<HomePage> {
     });
 
     return textWidget;
+  }
+
+  Widget thingCard(Thing thing) {
+    return Card(
+      color: Colors.lightBlueAccent,
+      child: Center(
+        child: Text(thing.information),
+      ),
+    );
   }
 }
