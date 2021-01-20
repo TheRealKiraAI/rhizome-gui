@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'home_page.dart';
+import 'screens/home_screen.dart';
 
 class App extends StatelessWidget {
   final Rhizome rhizome;
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Rhizome GUI', rhizome: rhizome),
+      home: HomeScreen(title: 'Rhizome GUI', rhizome: rhizome),
     );
   }
 }

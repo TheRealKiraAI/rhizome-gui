@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'widgets/thing_card.dart';
+import '../widgets/thing_card.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title, this.rhizome}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key key, this.title, this.rhizome}) : super(key: key);
 
   final String title;
   final Rhizome rhizome;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // function: Card ThingCard(Thing thing)
