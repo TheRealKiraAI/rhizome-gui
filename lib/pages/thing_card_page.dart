@@ -1,4 +1,5 @@
-import 'package:rhizome_gui/rhizome_gui.dart';
+import 'package:flutter/material.dart';
+import 'package:rhizome/rhizome.dart';
 
 class ThingCardPage extends StatefulWidget {
   ThingCardPage({Key key, this.thing}) : super(key: key);
