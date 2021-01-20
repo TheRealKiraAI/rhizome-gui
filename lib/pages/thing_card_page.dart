@@ -1,5 +1,4 @@
 import 'package:rhizome_gui/rhizome_gui.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class ThingCardPage extends StatefulWidget {
   ThingCardPage({Key key, this.thing}) : super(key: key);
@@ -12,7 +11,6 @@ class ThingCardPage extends StatefulWidget {
 }
 
 class _ThingCardPageState extends State<ThingCardPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
