@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import '../pages/thing_card_screen.dart';
+import '../screens/thing_card_screen.dart';
 
 class ThingCard extends StatelessWidget {
   final Thing thing;
