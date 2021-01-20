@@ -22,18 +22,15 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget> [
-          SizedBox(
-            height: 400, // constrain height
-            child: GridView.count(
-              crossAxisCount: 2,
-              children: [ 
-                for(var thing in widget.rhizome.query()) thingCard(thing)
-              ],
-            ),
-          ),
-        ],
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return GridView.count(
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+            children: <Widget> [
+              for(var thing in widget.rhizome.query()) thingCard(thing)
+            ],
+          );
+        }
       ),
     );
   }
