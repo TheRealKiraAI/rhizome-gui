@@ -27,6 +27,7 @@ class _ThingCardScreenState extends State<ThingCardScreen> {
 Widget thingCardDetail(Thing thing, Rhizome rhizome) {
   final seekingThing = rhizome.seek(thing.information);
   final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
+  final seekingTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
 
   // FOR DEBUG
   debugPrint(thing, rhizome);
@@ -40,7 +41,9 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
           Text('Focusing on thing...'),
           Text(seekingThing.information),
           Text('Tags: '),
-          getTagWidgets(seekingTags)
+          getTagWidgets(seekingTags),
+          Text('Targets: '),
+          getTargetWidgets(seekingTargets)
         ],
       ),
     ),
@@ -49,6 +52,10 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
 
 Widget getTagWidgets(Iterable<Thing> tags) {
   return new Column(children: tags.map((tag) => new Text(tag.information)).toList());
+}
+
+Widget getTargetWidgets(Iterable<Thing> targets) {
+  return new Column(children: targets.map((target) => new Text(target.information)).toList());
 }
 
 void debugPrint(Thing thing, Rhizome rhizome) {
