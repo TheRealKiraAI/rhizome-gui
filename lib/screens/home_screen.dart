@@ -15,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // function: Card ThingCard(Thing thing)
-    // iterate through map to add everything to ThingCard
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -28,18 +26,5 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       }),
     );
-  }
-
-  Widget visualizeOneThing(Rhizome rhizome) {
-    final everything = rhizome.query();
-    Text textWidget;
-
-    everything.forEach((thing) {
-      print('========== Experiencing Test ==========');
-      print('$thing');
-      textWidget = Text('${thing.information}');
-    });
-
-    return textWidget;
   }
 }
