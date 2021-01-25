@@ -4,8 +4,9 @@ import '../screens/thing_card_screen.dart';
 
 class ThingCard extends StatelessWidget {
   final Thing thing;
+  final Rhizome rhizome;
 
-  ThingCard({this.thing});
+  ThingCard({this.thing, this.rhizome});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ThingCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ThingCardScreen(thing: thing)))
+                builder: (context) => ThingCardScreen(thing: thing, rhizome: rhizome)))
       },
       child: Card(
         color: Colors.lightBlueAccent,

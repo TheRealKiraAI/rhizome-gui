@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 
 class ThingCardScreen extends StatefulWidget {
-  ThingCardScreen({Key key, this.thing}) : super(key: key);
+  ThingCardScreen({Key key, this.thing, this.rhizome}) : super(key: key);
 
   final String title = "Thing Screen";
   final Thing thing;
+  final Rhizome rhizome;
 
   @override
   _ThingCardScreenState createState() => _ThingCardScreenState();
@@ -21,22 +22,47 @@ class _ThingCardScreenState extends State<ThingCardScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          thingCardDetail(widget.thing),
+          thingCardDetail(widget.thing, widget.rhizome),
         ],
       ),
     );
   }
 }
 
-Widget thingCardDetail(Thing thing) {
+Widget thingCardDetail(Thing thing, Rhizome rhizome) {
+  final seekingThing = rhizome.seek(thing.information);
+  final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
+
+  // FOR DEBUG
+  debugPrint(thing, rhizome);
+
   return Card(
     color: Colors.lightGreenAccent,
     child: Center(
       child: Column(
-        children: [
-          Text(thing.information),
+        children: <Widget> [
+          Text('Focusing on thing...'),
+          Text(seekingThing.information),
+          Text('Tags: '),
+          getTagWidgets(seekingTags)
         ],
       ),
     ),
   );
+}
+
+Widget getTagWidgets(Iterable<Thing> tags) {
+  return new Column(children: tags.map((tag) => new Text(tag.information)).toList());
+}
+
+void debugPrint(Thing thing, Rhizome rhizome) {
+  print('Focusing on thing...');
+  final seekingThing = rhizome.seek(thing.information);
+  print(seekingThing.information);
+  print('Tags:');
+  final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
+  seekingTags.forEach((tag) => print(tag.information));
+  print('Targets:');
+  final motorsportTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
+  motorsportTargets.forEach((tag) => print(tag.information));
 }

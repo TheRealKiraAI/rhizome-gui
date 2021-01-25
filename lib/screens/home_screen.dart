@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: OrientationBuilder(builder: (context, orientation) {
         return GridView.count(
           crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-          children: widget.rhizome.query().map( (thing) => ThingCard(thing: thing)).toList()
+          children: widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList()
         );
       }),
     );
