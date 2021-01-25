@@ -19,12 +19,7 @@ class _ThingCardScreenState extends State<ThingCardScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          thingCardDetail(widget.thing, widget.rhizome),
-        ],
-      ),
+      body: thingCardDetail(widget.thing, widget.rhizome),
     );
   }
 }
@@ -40,6 +35,7 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
     color: Colors.lightGreenAccent,
     child: Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget> [
           Text('Focusing on thing...'),
           Text(seekingThing.information),
