@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import '../screens/thing_card_screen.dart';
 
-class ThingCard extends StatelessWidget {
+class ThingCard extends StatefulWidget {
+  ThingCard({this.thing, this.rhizome, this.offset});
+
   final Thing thing;
   final Rhizome rhizome;
+  Offset offset;
 
-  ThingCard({this.thing, this.rhizome});
+  @override
+  _ThingCardState createState() => _ThingCardState();
+}
 
+class _ThingCardState extends State<ThingCard> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -18,12 +24,12 @@ class ThingCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ThingCardScreen(thing: thing, rhizome: rhizome)))
+                builder: (context) => ThingCardScreen(thing: widget.thing, rhizome: widget.rhizome)))
       },
       child: Card(
         color: Colors.lightBlueAccent,
         child: Center(
-          child: Text(thing.information),
+          child: Text(widget.thing.information),
         ),
       ),
     );
