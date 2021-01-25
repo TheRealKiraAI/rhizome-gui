@@ -21,14 +21,22 @@ class _ThingCardScreenState extends State<ThingCardScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Card(
-            color: Colors.lightGreenAccent,
-            child: Center(
-              child: Text(widget.thing.information),
-            ),
-          ),
+          thingCardDetail(widget.thing),
         ],
       ),
     );
   }
+}
+
+Widget thingCardDetail(Thing thing) {
+  return Card(
+    color: Colors.lightGreenAccent,
+    child: Center(
+      child: Column(
+        children: [
+          Text(thing.information),
+        ],
+      ),
+    ),
+  );
 }
