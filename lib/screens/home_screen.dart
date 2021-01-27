@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import 'package:rhizome_gui/screens/create_information_screen.dart';
 import '../widgets/thing_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Offset offset = Offset.zero;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // toDo
+          Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => CreateInformationScreen()
+            ),
+          );
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.purple,
