@@ -7,7 +7,7 @@ class ThingCard extends StatefulWidget {
 
   final Thing thing;
   final Rhizome rhizome;
-  Offset offset;
+  final Offset offset;
 
   @override
   _ThingCardState createState() => _ThingCardState();
