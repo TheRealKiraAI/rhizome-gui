@@ -14,27 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  List<ThingCard> rhizomeMap;
-  ThingCard thingCard;
-  bool isClicked = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    if(isClicked) {
-      loadRhizomeMap();
-      isClicked = false;
-    }
-  }
-  
-  void loadRhizomeMap() {
-    setState( () {
-      widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,11 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // setState(() {
-          //   widget.rhizome.store('New Values');
-          //   isClicked = true;
-          // });
-          displayCreateInformationScreen(context);
+          _displayCreateInformationScreen(context);
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.purple,
@@ -61,9 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  displayCreateInformationScreen(BuildContext context) async {
-    // Navigator.push returns a Future that completes after calling
-    // Navigator.pop on the Selection Screen.
+  _displayCreateInformationScreen(BuildContext context) async {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CreateInformationScreen(rhizome: widget.rhizome)),
@@ -72,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList();
     });
+
+    // DEBUG
     print("$result");
   }
 }
