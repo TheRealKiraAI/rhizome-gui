@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import '../widgets/thing_card.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-  CreateInformationScreen({Key key}) : super(key: key);
+
+  CreateInformationScreen({Key key, this.rhizome}) : super(key: key);
+
+  final Rhizome rhizome;
 
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
@@ -12,7 +15,7 @@ class CreateInformationScreen extends StatefulWidget {
 class _CreateInformationScreen extends State<CreateInformationScreen> {
 
   final formKey = GlobalKey<FormState>();
-  final rhizome = Rhizome();
+  Thing informationThing;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 textField('Information'),
-                saveButton(),
+                saveButton(context),
               ]
             ),
           ),
@@ -45,7 +48,7 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
         labelText: toolTipText, border: OutlineInputBorder()),
       onSaved: (value) {
         // store value of object
-        rhizome.store(value);
+        informationThing = widget.rhizome.store(value);
         print(value);
       },
       validator: (value) {
@@ -58,12 +61,18 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
     );
   }
 
-    Widget saveButton() {
+  // void storeRhizomeValue() {
+  //   setState(() {
+  //     ThingCard(thing: informationThing, rhizome: rhizome);
+  //   });
+  // }
+
+  Widget saveButton(BuildContext context) {
     return RaisedButton(
-      onPressed: () async {
+      onPressed: () {
         if (formKey.currentState.validate()) {
           formKey.currentState.save();
-          Navigator.of(context).pop();
+          Navigator.pop(context, informationThing.toString());
         }
       },
       child: Text('ADD TO RHIZOME')
