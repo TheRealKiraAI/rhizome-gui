@@ -11,19 +11,46 @@ class CreateInformationScreen extends StatefulWidget {
 
 class _CreateInformationScreen extends State<CreateInformationScreen> {
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Create Information'),
       ),
-      body: Center(
-        child: Container(
-            width: 100,
-            height: 100,
-            color: Colors.purple,
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                textField('Information'),
+              ]
+            ),
+          ),
         ),
       ),
+    );
+  }
+
+  TextFormField textField(String toolTipText) {
+    return TextFormField(
+      autofocus: true,
+      decoration: InputDecoration(
+        labelText: toolTipText, border: OutlineInputBorder()),
+      onSaved: (value) {
+        // store value of object
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter data';
+        } else {
+          return null;
+        }
+      }
     );
   }
 }
