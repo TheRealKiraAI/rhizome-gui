@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-
   CreateInformationScreen({Key key, this.rhizome}) : super(key: key);
 
   final Rhizome rhizome;
@@ -49,7 +47,6 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
       onSaved: (value) {
         // store value of object
         informationThing = widget.rhizome.store(value);
-        print(value);
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -60,12 +57,6 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
       }
     );
   }
-
-  // void storeRhizomeValue() {
-  //   setState(() {
-  //     ThingCard(thing: informationThing, rhizome: rhizome);
-  //   });
-  // }
 
   Widget saveButton(BuildContext context) {
     return RaisedButton(
