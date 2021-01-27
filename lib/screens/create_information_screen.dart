@@ -12,6 +12,7 @@ class CreateInformationScreen extends StatefulWidget {
 class _CreateInformationScreen extends State<CreateInformationScreen> {
 
   final formKey = GlobalKey<FormState>();
+  final rhizome = Rhizome();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 textField('Information'),
+                saveButton(),
               ]
             ),
           ),
@@ -43,6 +45,8 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
         labelText: toolTipText, border: OutlineInputBorder()),
       onSaved: (value) {
         // store value of object
+        rhizome.store(value);
+        print(value);
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -51,6 +55,18 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
           return null;
         }
       }
+    );
+  }
+
+    Widget saveButton() {
+    return RaisedButton(
+      onPressed: () async {
+        if (formKey.currentState.validate()) {
+          formKey.currentState.save();
+          Navigator.of(context).pop();
+        }
+      },
+      child: Text('ADD TO RHIZOME')
     );
   }
 }
