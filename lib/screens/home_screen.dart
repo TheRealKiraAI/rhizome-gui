@@ -27,6 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
           children: widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList()
         );
       }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // toDo
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.purple,
+      ),
     );
   }
 }
