@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import '../models/rhizome_manager.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-  CreateInformationScreen({Key key, this.rhizome}) : super(key: key);
+  CreateInformationScreen({Key key}) : super(key: key);
 
-  final Rhizome rhizome;
+  final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
 }
 
 class _CreateInformationScreen extends State<CreateInformationScreen> {
-
   final formKey = GlobalKey<FormState>();
   Thing informationThing;
 
@@ -26,13 +26,11 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
         child: Center(
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                textField('Information'),
-                saveButton(context),
-              ]
-            ),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              textField('Information'),
+              saveButton(context),
+            ]),
           ),
         ),
       ),
@@ -41,32 +39,30 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
 
   TextFormField textField(String toolTipText) {
     return TextFormField(
-      autofocus: true,
-      decoration: InputDecoration(
-        labelText: toolTipText, border: OutlineInputBorder()),
-      onSaved: (value) {
-        // store value of object
-        informationThing = widget.rhizome.store(value);
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter data';
-        } else {
-          return null;
-        }
-      }
-    );
+        autofocus: true,
+        decoration: InputDecoration(
+            labelText: toolTipText, border: OutlineInputBorder()),
+        onSaved: (value) {
+          // store value of object
+          informationThing = widget.rhizome.store(value);
+        },
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter data';
+          } else {
+            return null;
+          }
+        });
   }
 
   Widget saveButton(BuildContext context) {
     return RaisedButton(
-      onPressed: () {
-        if (formKey.currentState.validate()) {
-          formKey.currentState.save();
-          Navigator.pop(context, informationThing.toString());
-        }
-      },
-      child: Text('ADD TO RHIZOME')
-    );
+        onPressed: () {
+          if (formKey.currentState.validate()) {
+            formKey.currentState.save();
+            Navigator.pop(context, informationThing.toString());
+          }
+        },
+        child: Text('ADD TO RHIZOME'));
   }
 }
