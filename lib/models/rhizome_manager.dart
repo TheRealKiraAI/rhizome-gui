@@ -2,17 +2,12 @@ import 'package:rhizome/rhizome.dart';
 import 'mock_rhizome.dart';
 
 class RhizomeManager {
-  static RhizomeManager _instance;
-  final Rhizome rhizome;
+  static Rhizome _rhizome;
 
-  RhizomeManager._({Rhizome rhizome}) : this.rhizome = rhizome;
-
-  factory RhizomeManager.getInstance() {
-    assert(_instance != null);
-    return _instance;
-  }
-
-  static initialize() {
-    _instance = RhizomeManager._(rhizome: mockRhizome());
+  static Rhizome getInstance() {
+    if (_rhizome == null) {
+      _rhizome = mockRhizome();
+    }
+    return _rhizome;
   }
 }
