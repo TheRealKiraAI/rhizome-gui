@@ -44,25 +44,26 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
           child: Form(
             key: formKey,
             child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(children: [
-                  textField('Information'),
-                  saveButton(context),
-                  Container(height: 20),
-                  Stack(children: rhizomeContainer),
-                  RaisedButton(
-                    child: Text('Add Movable Thing'),
-                    onPressed: () {
-                      setState(() {
-                        rhizomeContainer.add(MovableThing());
-                      });
-                    },
-                  )
-                ]),
-              ],
-            )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(children: [
+                    textField('Information'),
+                    saveButton(context),
+                    Container(height: 20),
+                    Stack(children: rhizomeContainer),
+                    RaisedButton(
+                      child: Text('Add Movable Thing'),
+                      onPressed: () {
+                        setState(() {
+                          rhizomeContainer.add(MovableThing());
+                        });
+                      },
+                    )
+                  ]),
+                ],
+              )
+            ),
           ),
         ),
       ),
