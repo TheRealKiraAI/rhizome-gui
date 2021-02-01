@@ -23,7 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: OrientationBuilder(builder: (context, orientation) {
         return GridView.count(
           crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-          children: widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList(),
+          children: widget.rhizome
+              .query()
+              .map((thing) => ThingCard(thing: thing))
+              .toList(),
         );
       }),
       floatingActionButton: FloatingActionButton(
@@ -39,11 +42,18 @@ class _HomeScreenState extends State<HomeScreen> {
   _displayCreateInformationScreen(BuildContext context) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CreateInformationScreen()),
+      MaterialPageRoute(builder: (context) => CreateInformationScreen(rhizome: widget.rhizome)),
     );
 
     setState(() {
-      widget.rhizome.query().map( (thing) => ThingCard(thing: thing, rhizome: widget.rhizome)).toList();
+      widget.rhizome
+          .query()
+          .map((thing) => ThingCard(thing: thing))
+          .toList();
+      print(widget.rhizome
+          .query()
+          .map((thing) => ThingCard(thing: thing))
+          .toList());
     });
 
     // DEBUG

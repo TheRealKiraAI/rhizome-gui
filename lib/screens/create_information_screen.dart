@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import '../models/rhizome_manager.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-  CreateInformationScreen({Key key}) : super(key: key);
+  CreateInformationScreen({Key key, this.rhizome}) : super(key: key);
 
-  final Rhizome rhizome = RhizomeManager.getInstance();
+  final Rhizome rhizome;
 
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
