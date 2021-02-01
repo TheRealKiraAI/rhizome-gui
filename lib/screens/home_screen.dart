@@ -50,10 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
           .query()
           .map((thing) => ThingCard(thing: thing))
           .toList();
-      print(widget.rhizome
-          .query()
-          .map((thing) => ThingCard(thing: thing))
-          .toList());
     });
 
     // DEBUG

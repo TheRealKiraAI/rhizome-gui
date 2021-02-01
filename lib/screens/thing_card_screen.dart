@@ -38,7 +38,7 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
           Text('Tags: '),
           getTagWidgets(seekingTags),
           Text('Targets: '),
-          getTargetWidgets(seekingTargets)
+          getTargetWidgets(seekingTargets),
         ],
       ),
     ),
