@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 
-class ThingCardScreen extends StatefulWidget {
+class ThingCardScreen extends StatelessWidget {
   ThingCardScreen({Key key, this.thing, this.rhizome}) : super(key: key);
 
   final String title = "Thing Screen";
@@ -9,17 +9,12 @@ class ThingCardScreen extends StatefulWidget {
   final Rhizome rhizome;
 
   @override
-  _ThingCardScreenState createState() => _ThingCardScreenState();
-}
-
-class _ThingCardScreenState extends State<ThingCardScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
-      body: thingCardDetail(widget.thing, widget.rhizome),
+      body: thingCardDetail(thing, rhizome),
     );
   }
 }
