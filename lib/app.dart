@@ -3,8 +3,6 @@ import 'package:rhizome/rhizome.dart';
 import 'screens/home_screen.dart';
 
 class App extends StatelessWidget {
-  final Rhizome rhizome;
-  const App(this.rhizome);
 
   @override
   Widget build(BuildContext context) {
@@ -17,4 +15,5 @@ class App extends StatelessWidget {
       home: HomeScreen(title: 'Rhizome GUI'),
     );
   }
+  
 }
