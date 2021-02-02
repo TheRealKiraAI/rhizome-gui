@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _displayCreateInformationScreen(BuildContext context) async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CreateInformationScreen(rhizome: widget.rhizome)),
+      MaterialPageRoute(builder: (context) => CreateInformationScreen()),
     );
 
     setState(() {

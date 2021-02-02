@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import '../models/rhizome_manager.dart';
 import '../widgets/movable_thing.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-  CreateInformationScreen({Key key, this.rhizome}) : super(key: key);
+  CreateInformationScreen({Key key}) : super(key: key);
 
-  final Rhizome rhizome;
+  final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
@@ -44,26 +45,25 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
           child: Form(
             key: formKey,
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(children: [
-                    textField('Information'),
-                    saveButton(context),
-                    Container(height: 20),
-                    Stack(children: rhizomeContainer),
-                    RaisedButton(
-                      child: Text('Add Movable Thing'),
-                      onPressed: () {
-                        setState(() {
-                          rhizomeContainer.add(MovableThing());
-                        });
-                      },
-                    )
-                  ]),
-                ],
-              )
-            ),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(children: [
+                  textField('Information'),
+                  saveButton(context),
+                  Container(height: 20),
+                  Stack(children: rhizomeContainer),
+                  RaisedButton(
+                    child: Text('Add Movable Thing'),
+                    onPressed: () {
+                      setState(() {
+                        rhizomeContainer.add(MovableThing());
+                      });
+                    },
+                  )
+                ]),
+              ],
+            )),
           ),
         ),
       ),
@@ -90,9 +90,10 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
 
   void listRhizome() {
     rhizomeThings = widget.rhizome
-      .query()
-      .map((thing) => MovableThing()).cast<Thing>()
-      .toList();
+        .query()
+        .map((thing) => MovableThing())
+        .cast<Thing>()
+        .toList();
   }
 
   Widget saveButton(BuildContext context) {
