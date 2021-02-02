@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import '../models/rhizome_manager.dart';
 
 class ThingCardScreen extends StatelessWidget {
-  ThingCardScreen({Key key, this.thing, this.rhizome}) : super(key: key);
+  ThingCardScreen({Key key, this.thing}) : super(key: key);
 
   final String title = "Thing Screen";
   final Thing thing;
-  final Rhizome rhizome;
+  final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,8 @@ class ThingCardScreen extends StatelessWidget {
 Widget thingCardDetail(Thing thing, Rhizome rhizome) {
   final seekingThing = rhizome.seek(thing.information);
   final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
-  final seekingTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
+  final seekingTargets =
+      seekingThing.targets.map((uri) => rhizome.retrieve(uri));
 
   // FOR DEBUG
   debugPrint(thing, rhizome);
@@ -32,7 +34,7 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
     child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget> [
+        children: <Widget>[
           Text('Focusing on thing...'),
           Text(seekingThing.information),
           Text('Tags: '),
@@ -46,11 +48,13 @@ Widget thingCardDetail(Thing thing, Rhizome rhizome) {
 }
 
 Widget getTagWidgets(Iterable<Thing> tags) {
-  return new Column(children: tags.map((tag) => new Text(tag.information)).toList());
+  return new Column(
+      children: tags.map((tag) => new Text(tag.information)).toList());
 }
 
 Widget getTargetWidgets(Iterable<Thing> targets) {
-  return new Column(children: targets.map((target) => new Text(target.information)).toList());
+  return new Column(
+      children: targets.map((target) => new Text(target.information)).toList());
 }
 
 void debugPrint(Thing thing, Rhizome rhizome) {
@@ -61,6 +65,7 @@ void debugPrint(Thing thing, Rhizome rhizome) {
   final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
   seekingTags.forEach((tag) => print(tag.information));
   print('Targets:');
-  final motorsportTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
+  final motorsportTargets =
+      seekingThing.targets.map((uri) => rhizome.retrieve(uri));
   motorsportTargets.forEach((tag) => print(tag.information));
 }
