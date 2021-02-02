@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/models/rhizome_manager.dart';
 import '../screens/thing_card_screen.dart';
 
 class ThingCard extends StatelessWidget {
 
   final Thing thing;
-  final Rhizome rhizome = RhizomeManager.getInstance();
   final Offset offset;
 
   ThingCard({this.thing, this.offset});
@@ -22,7 +20,7 @@ class ThingCard extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ThingCardScreen(
-                    thing: thing, rhizome: rhizome)))
+                    thing: thing)))
       },
       child: Card(
         color: Colors.lightBlueAccent,
