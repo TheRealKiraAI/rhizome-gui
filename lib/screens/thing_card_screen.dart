@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 import '../models/rhizome_manager.dart';
 
 class ThingCardScreen extends StatelessWidget {
@@ -15,7 +16,13 @@ class ThingCardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: thingCardDetail(thing, rhizome),
+      body: Center(
+        child: Container (
+          height: 300,
+          width: 300,
+          child: ThingCard(thing: thing),
+        ),
+      )
     );
   }
 }
