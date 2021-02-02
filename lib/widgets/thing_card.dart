@@ -4,11 +4,12 @@ import 'package:rhizome_gui/models/rhizome_manager.dart';
 import '../screens/thing_card_screen.dart';
 
 class ThingCard extends StatelessWidget {
-  ThingCard({this.thing, this.offset});
 
   final Thing thing;
   final Rhizome rhizome = RhizomeManager.getInstance();
   final Offset offset;
+
+  ThingCard({this.thing, this.offset});
 
   @override
   Widget build(BuildContext context) {
