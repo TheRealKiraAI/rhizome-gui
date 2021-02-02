@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rhizome/rhizome.dart';
 import 'screens/home_screen.dart';
 
 class App extends StatelessWidget {
@@ -15,5 +14,5 @@ class App extends StatelessWidget {
       home: HomeScreen(title: 'Rhizome GUI'),
     );
   }
-  
+
 }
