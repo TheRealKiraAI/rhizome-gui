@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(title: 'Rhizome GUI', rhizome: rhizome),
+      home: HomeScreen(title: 'Rhizome GUI'),
     );
   }
 }

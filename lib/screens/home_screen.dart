@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
+import '../models/rhizome_manager.dart';
 import '../widgets/thing_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title, this.rhizome}) : super(key: key);
+  HomeScreen({Key key, this.title}) : super(key: key);
 
   final String title;
-  final Rhizome rhizome;
+  final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
