@@ -5,9 +5,8 @@ import '../screens/thing_card_screen.dart';
 class ThingCard extends StatelessWidget {
 
   final Thing thing;
-  final Offset offset;
 
-  ThingCard({this.thing, this.offset});
+  ThingCard({this.thing});
 
   @override
   Widget build(BuildContext context) {
