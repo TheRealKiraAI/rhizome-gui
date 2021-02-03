@@ -21,10 +21,14 @@ class ThingCard extends StatelessWidget {
             builder: (context) => ThingScreen(thing: thing))
           )
       },
-      child: Card(
-        color: Colors.lightBlueAccent,
-        child: Center(
-          child: Text(thing.information),
+      child: Container(
+        width: 150,
+        height: 150,
+        child: Card(
+          color: Colors.lightBlueAccent,
+          child: Center(
+            child: Text(thing.information),
+          ),
         ),
       ),
     );

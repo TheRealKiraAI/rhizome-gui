@@ -32,55 +32,13 @@ class ThingScreen extends StatelessWidget {
               itemCount: seekingTags.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                return Row (
-                  children: <Widget> [ 
-                    getTagWidgets(seekingTags),
-                    getTagWidgets(seekingTags),
-                    getTagWidgets(seekingTags),
-                    getTagWidgets(seekingTags),
-                    getTagWidgets(seekingTags),
-                  ]
+                return Row(
+                  children: <Widget> [ getTagWidgets(seekingTags) ]
                 );
-                //return ListTile(
-                //title: getTagWidgets(seekingTags),
-                // subtitle: Text(widget.entries[index].dateTime),
-                // trailing: Text(widget.entries[index].rating.toString()),
-                // onTap: () {
-                //   widget.entries[index].id = index;
-                //   setDetails(widget.entries[index].id, widget.entries[index].title, widget.entries[index].body, widget.entries[index].rating, widget.entries[index].dateTime);
-                //   // Navigator.push(context, MaterialPageRoute(
-                //   //   builder: (context) => JournalDetails(journalItem: widget.entries[index])),
-                //   // );
-                // }
-                //);
               }),
-          // ListView(
-          //   scrollDirection: Axis.horizontal,
-          //   children: <Widget>[
-          //     Container(
-          //       width: 160.0,
-          //       color: Colors.red,
-          //     ),
-          //     Container(
-          //       width: 160.0,
-          //       color: Colors.blue,
-          //     ),
-          //     Container(
-          //       width: 160.0,
-          //       color: Colors.green,
-          //     ),
-          //     Container(
-          //       width: 160.0,
-          //       color: Colors.yellow,
-          //     ),
-          //     Container(
-          //       width: 160.0,
-          //       color: Colors.orange,
-          //     ),
-          //   ],
-          // ),
         ),
         Container(
+          color: Colors.purple,
           height: 300,
           width: 300,
           child: ThingCard(thing: thing),
@@ -119,22 +77,14 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget getTagWidgets(Iterable<Thing> tags) {
-    return new Column(
-        children: tags.map((tag) => tagTargetTiles(tag)).toList());
+    return new Row(
+      children: tags.map((tag) => ThingCard(thing: tag)).toList());
   }
 
   Widget getTargetWidgets(Iterable<Thing> targets) {
     return new Column(
         children:
             targets.map((target) => new Text(target.information)).toList());
-  }
-
-  Widget tagTargetTiles(Thing tagTarget) {
-    return Container(
-      width: 160.0,
-      color: Colors.purple[300],
-      child: Text(tagTarget.information)
-    );
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
