@@ -14,8 +14,7 @@ class ThingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final seekingThing = rhizome.seek(thing.information);
     final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
-    final seekingTargets =
-        seekingThing.targets.map((uri) => rhizome.retrieve(uri));
+    final seekingTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
 
     // FOR DEBUG
     debugPrint(thing, rhizome);
@@ -29,13 +28,14 @@ class ThingScreen extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: 200.0,
           child: ListView.builder(
-              itemCount: seekingTags.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                return Row(
-                  children: <Widget> [ getTagWidgets(seekingTags) ]
-                );
-              }),
+            itemCount: seekingTags.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return Row(
+                children: <Widget> [ getTagWidgets(seekingTags) ]
+              );
+            }
+          ),
         ),
         Container(
           color: Colors.purple,
@@ -46,30 +46,14 @@ class ThingScreen extends StatelessWidget {
         Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: 200.0,
-          child: ListView(
+          child: ListView.builder(
+            itemCount: seekingTargets.length,
             scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                width: 160.0,
-                color: Colors.red,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.green,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.orange,
-              ),
-            ],
+            itemBuilder: (BuildContext context, int index) {
+              return Row(
+                children: <Widget> [ getTargetWidgets(seekingTargets) ]
+              );
+            }
           ),
         ),
       ]),
@@ -77,14 +61,11 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget getTagWidgets(Iterable<Thing> tags) {
-    return new Row(
-      children: tags.map((tag) => ThingCard(thing: tag)).toList());
+    return new Row(children: tags.map((tag) => ThingCard(thing: tag)).toList());
   }
 
   Widget getTargetWidgets(Iterable<Thing> targets) {
-    return new Column(
-        children:
-            targets.map((target) => new Text(target.information)).toList());
+    return new Row(children: targets.map((target) => ThingCard(thing: target)).toList());
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
