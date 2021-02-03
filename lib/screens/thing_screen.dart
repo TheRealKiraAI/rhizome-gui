@@ -32,7 +32,7 @@ class ThingScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return Row(
-                children: <Widget> [ getTagWidgets(seekingTags) ]
+                children: <Widget> [ tagAndTargets(seekingTags) ]
               );
             }
           ),
@@ -51,7 +51,7 @@ class ThingScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               return Row(
-                children: <Widget> [ getTargetWidgets(seekingTargets) ]
+                children: <Widget> [ tagAndTargets(seekingTargets) ]
               );
             }
           ),
@@ -60,12 +60,8 @@ class ThingScreen extends StatelessWidget {
     );
   }
 
-  Widget getTagWidgets(Iterable<Thing> tags) {
-    return new Row(children: tags.map((tag) => ThingCard(thing: tag)).toList());
-  }
-
-  Widget getTargetWidgets(Iterable<Thing> targets) {
-    return new Row(children: targets.map((target) => ThingCard(thing: target)).toList());
+  Widget tagAndTargets(Iterable<Thing> t) {
+    return new Row(children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
