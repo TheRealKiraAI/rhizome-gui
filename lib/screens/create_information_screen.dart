@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import '../models/rhizome_manager.dart';
-import '../widgets/moveable_thing.dart';
 
 class CreateInformationScreen extends StatefulWidget {
   CreateInformationScreen({Key key}) : super(key: key);
