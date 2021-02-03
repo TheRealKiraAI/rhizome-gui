@@ -39,7 +39,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         backgroundColor: Colors.purple,
       ),
       bottomNavigationBar: BottomAppBar(
-      color: Colors.blue,
+      color: Colors.grey[300],
       child: new Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

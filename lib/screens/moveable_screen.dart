@@ -10,8 +10,8 @@ class _MoveableScreenState extends State<MoveableScreen> {
   
   List<Widget> rhizomeContainer = [
     Container(
-      width: 150,
-      height: 150,
+      width: 300,
+      height: 600,
       color: Colors.purple,
     )
   ];
