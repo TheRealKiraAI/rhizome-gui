@@ -3,8 +3,8 @@ import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 import '../models/rhizome_manager.dart';
 
-class ThingCardScreen extends StatelessWidget {
-  ThingCardScreen({Key key, this.thing}) : super(key: key);
+class ThingScreen extends StatelessWidget {
+  ThingScreen({Key key, this.thing}) : super(key: key);
 
   final String title = "Thing Screen";
   final Thing thing;
