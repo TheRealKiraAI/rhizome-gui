@@ -4,17 +4,17 @@ import 'package:rhizome_gui/screens/create_information_screen.dart';
 import '../models/rhizome_manager.dart';
 import '../widgets/thing_card.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key, this.title}) : super(key: key);
+class RhizomeScreen extends StatefulWidget {
+  RhizomeScreen({Key key, this.title}) : super(key: key);
 
   final String title;
   final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _RhizomeScreenState createState() => _RhizomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _RhizomeScreenState extends State<RhizomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
