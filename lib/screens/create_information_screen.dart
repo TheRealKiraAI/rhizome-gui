@@ -15,14 +15,9 @@ class CreateInformationScreen extends StatefulWidget {
 class _CreateInformationScreen extends State<CreateInformationScreen> {
   final formKey = GlobalKey<FormState>();
   Thing informationThing;
-  Thing tagThing;
-
-  List<Thing> rhizomeThings;
 
   @override
   Widget build(BuildContext context) {
-    //rhizomeList = widget.rhizome.query();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Create Information'),
@@ -65,14 +60,6 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
             return null;
           }
         });
-  }
-
-  void listRhizome() {
-    rhizomeThings = widget.rhizome
-        .query()
-        .map((thing) => MoveableThing())
-        .cast<Thing>()
-        .toList();
   }
 
   Widget saveButton(BuildContext context) {
