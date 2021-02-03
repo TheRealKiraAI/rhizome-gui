@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MovableThing extends StatefulWidget { 
+class MoveableThing extends StatefulWidget { 
   @override State<StatefulWidget> createState() { 
-   return _MovableThingState(); 
+   return _MoveableThingState(); 
   } 
 }
-class _MovableThingState extends State<MovableThing> {
+class _MoveableThingState extends State<MoveableThing> {
   double xPosition = 0;
   double yPosition = 0;
   Color color;
