@@ -43,11 +43,11 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
     );
   }
 
-  TextFormField textField(String toolTipText) {
+  TextFormField textField(String label) {
     return TextFormField(
         autofocus: true,
         decoration: InputDecoration(
-            labelText: toolTipText, border: OutlineInputBorder()),
+            labelText: label, border: OutlineInputBorder()),
         onSaved: (value) {
           // store value of object
           informationThing = widget.rhizome.store(value);
