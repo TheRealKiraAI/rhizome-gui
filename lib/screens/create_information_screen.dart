@@ -23,31 +23,32 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: Container(
-          child: Form(
-            key: formKey,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(children: [
-                    textField('Information'),
-                    saveButton(context),
-                  ]),
-                ],
-              )
-            ),
-          ),
-        ),
+        child: _informationForm(),
       ),
+    );
+  }
+
+  Widget _informationForm() {
+    return Form(
+      key: formKey,
+      child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(children: [
+                textField('Information'),
+                saveButton(context),
+              ]),
+            ],
+      )),
     );
   }
 
   TextFormField textField(String label) {
     return TextFormField(
         autofocus: true,
-        decoration: InputDecoration(
-            labelText: label, border: OutlineInputBorder()),
+        decoration:
+            InputDecoration(labelText: label, border: OutlineInputBorder()),
         onSaved: (value) {
           // store value of object
           informationThing = widget.rhizome.store(value);
