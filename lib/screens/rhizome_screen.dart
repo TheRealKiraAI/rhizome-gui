@@ -6,9 +6,8 @@ import '../models/rhizome_manager.dart';
 import '../widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
-  RhizomeScreen({Key key, this.title}) : super(key: key);
+  RhizomeScreen({Key key}) : super(key: key);
 
-  final String title;
   final Rhizome rhizome = RhizomeManager.getInstance();
 
   @override
@@ -20,7 +19,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Rhizome'),
       ),
       body: OrientationBuilder(builder: (context, orientation) {
         return GridView.count(
