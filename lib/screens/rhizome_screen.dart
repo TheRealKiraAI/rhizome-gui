@@ -23,12 +23,8 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       ),
       body: OrientationBuilder(builder: (context, orientation) {
         return GridView.count(
-          crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-          children: widget.rhizome
-              .query()
-              .map((thing) => ThingCard(thing: thing))
-              .toList(),
-        );
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+            children: _thingCards(widget.rhizome));
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -38,19 +34,31 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         backgroundColor: Colors.purple,
       ),
       bottomNavigationBar: BottomAppBar(
-      color: Colors.grey[300],
-      child: new Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(icon: Icon(Icons.compare_arrows), onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MoveableScreen()));
-          }),
-          IconButton(icon: Icon(Icons.search), onPressed: () {},),
-        ],
+        color: Colors.grey[300],
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+                icon: Icon(Icons.compare_arrows),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MoveableScreen()));
+                }),
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
-    ),
     );
+  }
+
+  List<ThingCard> _thingCards(Rhizome rhizome) {
+    return rhizome.query().map((thing) => ThingCard(thing: thing)).toList();
   }
 
   _displayCreateInformationScreen(BuildContext context) async {
