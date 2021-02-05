@@ -35,10 +35,8 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(children: [
                 textField('Information'),
                 saveButton(context),
-              ]),
             ],
       )),
     );
