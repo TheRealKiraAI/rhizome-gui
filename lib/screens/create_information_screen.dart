@@ -35,32 +35,26 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                textField('Information'),
-                saveButton(context),
+                _textField('Information'),
+                _saveButton(context),
             ],
       )),
     );
   }
 
-  TextFormField textField(String label) {
+  TextFormField _textField(String label) {
     return TextFormField(
         autofocus: true,
-        decoration:
-            InputDecoration(labelText: label, border: OutlineInputBorder()),
-        onSaved: (value) {
-          // store value of object
-          informationThing = widget.rhizome.store(value);
-        },
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter data';
-          } else {
-            return null;
-          }
-        });
+        decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder()
+          ),
+        validator: (value) => value.isEmpty ? 'Please enter data' : null,
+        onSaved: (value) => informationThing = widget.rhizome.store(value)
+      );
   }
 
-  Widget saveButton(BuildContext context) {
+  Widget _saveButton(BuildContext context) {
     return RaisedButton(
         onPressed: () {
           if (formKey.currentState.validate()) {
@@ -68,6 +62,8 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
             Navigator.pop(context, informationThing.toString());
           }
         },
-        child: Text('ADD TO RHIZOME'));
+        child: Text('ADD TO RHIZOME')
+      );
   }
+
 }
