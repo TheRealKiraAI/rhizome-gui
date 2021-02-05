@@ -32,13 +32,14 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
     return Form(
       key: formKey,
       child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-                _textField('Information'),
-                _saveButton(context),
-            ],
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _textField('Information'),
+            _saveButton(context),
+          ],
+        )
+      ),
     );
   }
 
