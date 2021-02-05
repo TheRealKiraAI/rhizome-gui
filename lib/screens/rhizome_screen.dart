@@ -27,27 +27,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
             children: _thingCards(widget.rhizome));
       }),
       floatingActionButton: _addButton(),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.grey[300],
-        child: new Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-                icon: Icon(Icons.compare_arrows),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MoveableScreen()));
-                }),
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: _bottomNavigationBar()
     );
   }
 
@@ -72,4 +52,29 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
     // DEBUG
     print("$result");
   }
+
+  Widget _bottomNavigationBar() {
+    return BottomAppBar(
+        color: Colors.grey[300],
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+                icon: Icon(Icons.compare_arrows),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MoveableScreen()));
+                }),
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
+          ],
+        ),
+      );
+  }
+
 }
