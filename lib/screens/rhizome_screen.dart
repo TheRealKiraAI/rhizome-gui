@@ -60,13 +60,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       MaterialPageRoute(builder: (context) => CreateInformationScreen()),
     );
 
-    setState(() {
-      widget.rhizome
-          .query()
-          .map((thing) => ThingCard(thing: thing))
-          .toList();
-    });
-
     // DEBUG
     print("$result");
   }
