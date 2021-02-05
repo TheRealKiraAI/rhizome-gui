@@ -6,15 +6,18 @@ import '../models/rhizome_manager.dart';
 import '../widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
-  RhizomeScreen({Key key}) : super(key: key);
 
   final Rhizome rhizome = RhizomeManager.getInstance();
+  
+  RhizomeScreen({Key key}) : super(key: key);
 
   @override
   _RhizomeScreenState createState() => _RhizomeScreenState();
+
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

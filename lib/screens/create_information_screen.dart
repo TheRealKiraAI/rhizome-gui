@@ -3,15 +3,18 @@ import 'package:rhizome/rhizome.dart';
 import '../models/rhizome_manager.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-  CreateInformationScreen({Key key}) : super(key: key);
 
   final Rhizome rhizome = RhizomeManager.getInstance();
 
+  CreateInformationScreen({Key key}) : super(key: key);
+
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
+
 }
 
 class _CreateInformationScreen extends State<CreateInformationScreen> {
+
   final formKey = GlobalKey<FormState>();
   Thing informationThing;
 

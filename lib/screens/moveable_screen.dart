@@ -18,7 +18,6 @@ class _MoveableScreenState extends State<MoveableScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Move Information'),
@@ -45,4 +44,5 @@ class _MoveableScreenState extends State<MoveableScreen> {
       ),
     );
   }
+
 }

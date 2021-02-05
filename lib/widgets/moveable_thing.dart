@@ -6,14 +6,17 @@ class MoveableThing extends StatefulWidget {
   } 
 }
 class _MoveableThingState extends State<MoveableThing> {
+
   double xPosition = 0;
   double yPosition = 0;
   Color color;
+
   @override
   void initState() {
     color = Colors.blue;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -34,4 +37,5 @@ class _MoveableThingState extends State<MoveableThing> {
       ),
     );
   }
+
 }

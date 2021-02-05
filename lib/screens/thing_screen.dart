@@ -4,11 +4,12 @@ import 'package:rhizome_gui/widgets/thing_card.dart';
 import '../models/rhizome_manager.dart';
 
 class ThingScreen extends StatelessWidget {
-  ThingScreen({Key key, this.thing}) : super(key: key);
 
   final String title = "Thing Screen";
   final Thing thing;
   final Rhizome rhizome = RhizomeManager.getInstance();
+
+  ThingScreen({Key key, this.thing}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,4 +77,5 @@ class ThingScreen extends StatelessWidget {
         seekingThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
   }
+  
 }
