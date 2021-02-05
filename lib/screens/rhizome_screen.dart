@@ -26,13 +26,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
             crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
             children: _thingCards(widget.rhizome));
       }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _displayCreateInformationScreen(context);
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.purple,
-      ),
+      floatingActionButton: _addButton(),
       bottomNavigationBar: BottomAppBar(
         color: Colors.grey[300],
         child: new Row(
@@ -59,6 +53,14 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
 
   List<ThingCard> _thingCards(Rhizome rhizome) {
     return rhizome.query().map((thing) => ThingCard(thing: thing)).toList();
+  }
+
+  Widget _addButton() {
+    return FloatingActionButton(
+      onPressed: () => _displayCreateInformationScreen(context),
+      child: Icon(Icons.add),
+      backgroundColor: Colors.purple,
+    );
   }
 
   _displayCreateInformationScreen(BuildContext context) async {
