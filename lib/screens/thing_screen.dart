@@ -57,7 +57,7 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget _tagAndTargets(Iterable<Thing> t) {
-    return new Row(
+    return Row(
         children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
   }
 

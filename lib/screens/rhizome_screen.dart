@@ -83,7 +83,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   Widget _bottomNavigationBar() {
     return BottomAppBar(
       color: Colors.grey[300],
-      child: new Row(
+      child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
