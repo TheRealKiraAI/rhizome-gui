@@ -4,7 +4,6 @@ import 'package:rhizome_gui/widgets/thing_card.dart';
 import '../models/rhizome_manager.dart';
 
 class ThingScreen extends StatelessWidget {
-
   final String title = "Thing Screen";
   final Thing thing;
   final Rhizome rhizome = RhizomeManager.getInstance();
@@ -15,7 +14,8 @@ class ThingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final seekingThing = rhizome.seek(thing.information);
     final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
-    final seekingTargets = seekingThing.targets.map((uri) => rhizome.retrieve(uri));
+    final seekingTargets =
+        seekingThing.targets.map((uri) => rhizome.retrieve(uri));
 
     // FOR DEBUG
     debugPrint(thing, rhizome);
@@ -29,14 +29,11 @@ class ThingScreen extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: 200.0,
           child: ListView.builder(
-            itemCount: seekingTags.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return Row(
-                children: <Widget> [ tagAndTargets(seekingTags) ]
-              );
-            }
-          ),
+              itemCount: seekingTags.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return _tagAndTargets(seekingTags);
+              }),
         ),
         Container(
           color: Colors.purple,
@@ -48,21 +45,19 @@ class ThingScreen extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 20.0),
           height: 200.0,
           child: ListView.builder(
-            itemCount: seekingTargets.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return Row(
-                children: <Widget> [ tagAndTargets(seekingTargets) ]
-              );
-            }
-          ),
+              itemCount: seekingTargets.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context, int index) {
+                return _tagAndTargets(seekingTargets);
+              }),
         ),
       ]),
     );
   }
 
-  Widget tagAndTargets(Iterable<Thing> t) {
-    return new Row(children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
+  Widget _tagAndTargets(Iterable<Thing> t) {
+    return new Row(
+        children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
@@ -77,5 +72,4 @@ class ThingScreen extends StatelessWidget {
         seekingThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
   }
-  
 }
