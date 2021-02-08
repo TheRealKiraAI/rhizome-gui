@@ -26,14 +26,18 @@ class ThingScreen extends StatelessWidget {
       ),
       body: Column(children: [
         _tagAndTargetList(seekingTags),
-        Container(
-          color: Colors.purple,
-          height: 300,
-          width: 300,
-          child: ThingCard(thing: thing),
-        ),
+        _centerThingCard(thing),
         _tagAndTargetList(seekingTargets),
       ]),
+    );
+  }
+
+  Widget _centerThingCard(Thing thing) {
+    return Container(
+      color: Colors.purple,
+      height: 300,
+      width: 300,
+      child: ThingCard(thing: thing),
     );
   }
 
@@ -53,7 +57,8 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget _tagAndTargets(Iterable<Thing> t) {
-    return new Row(children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
+    return new Row(
+        children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
