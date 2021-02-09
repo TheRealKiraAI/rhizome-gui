@@ -7,17 +7,16 @@ class ThingScreen extends StatelessWidget {
   final String title = "Thing Screen";
   final Thing thing;
   final Rhizome rhizome = RhizomeManager.getInstance();
+  List<Thing> tags;
+  List<Thing> targets;
 
-  ThingScreen({Key key, this.thing}) : super(key: key);
+  ThingScreen({Key key, this.thing}) : super(key: key) {
+    tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
+    targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final seekingThing = rhizome.seek(thing.information);
-    final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
-    final seekingTargets =
-        seekingThing.targets.map((uri) => rhizome.retrieve(uri));
-
-    // FOR DEBUG
     debugPrint(thing, rhizome);
 
     return Scaffold(
@@ -25,9 +24,9 @@ class ThingScreen extends StatelessWidget {
         title: Text(title),
       ),
       body: Column(children: [
-        _tagAndTargetList(seekingTags),
+        _thingRow(tags),
         _centerThingCard(thing),
-        _tagAndTargetList(seekingTargets),
+        _thingRow(targets),
       ]),
     );
   }
@@ -41,24 +40,9 @@ class ThingScreen extends StatelessWidget {
     );
   }
 
-  Widget _tagAndTargetList(Iterable<Thing> t) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 200.0,
-      child: ListView.builder(
-          itemCount: t.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            print(t.length.toString());
-            print("SeekingTags: " + t.toString());
-            return _tagAndTargets(t);
-          }),
-    );
-  }
-
-  Widget _tagAndTargets(Iterable<Thing> t) {
+  Widget _thingRow(List<Thing> things) {
     return Row(
-        children: t.map((tagTarget) => ThingCard(thing: tagTarget)).toList());
+        children: things.map((thing) => ThingCard(thing: thing)).toList());
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
@@ -73,4 +57,5 @@ class ThingScreen extends StatelessWidget {
         seekingThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
   }
+
 }
