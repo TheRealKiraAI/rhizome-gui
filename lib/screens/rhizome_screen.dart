@@ -36,7 +36,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   }
 
   List<MoveableThing> _thingCards(Rhizome rhizome) {
-    return rhizome.query().map((thing) => MoveableThing(ThingCard(thing: thing))).toList();
+    return rhizome.query().map((thing) => MoveableThing(thingCard: thing)).toList();
   }
 
   Widget _addButton() {

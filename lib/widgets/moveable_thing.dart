@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rhizome/rhizome.dart';
+import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
-  final ThingCard thingCard;
+  Thing thingCard;
 
-  MoveableThing(this.thingCard);
+  MoveableThing({this.thingCard});
 
   @override
   State<StatefulWidget> createState() {
@@ -29,14 +31,20 @@ class _MoveableThingState extends State<MoveableThing> {
       top: yPosition,
       left: xPosition,
       child: GestureDetector(
-        onPanUpdate: (tapInfo) {
-          setState(() {
-            xPosition += tapInfo.delta.dx;
-            yPosition += tapInfo.delta.dy;
-          });
-        },
-        child: widget.thingCard,
-      ),
+          onPanUpdate: (tapInfo) {
+            setState(() {
+              xPosition += tapInfo.delta.dx;
+              yPosition += tapInfo.delta.dy;
+            });
+          },
+          child: Hero(
+            tag: widget.thingCard.information,
+            child: ThingCard(thing: widget.thingCard),
+          ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ThingScreen()));
+          }),
     );
   }
 }

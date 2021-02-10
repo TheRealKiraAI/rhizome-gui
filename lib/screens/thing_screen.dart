@@ -25,7 +25,15 @@ class ThingScreen extends StatelessWidget {
       ),
       body: Column(children: [
         _thingRow(tags),
-        _centerThingCard(thing),
+        GestureDetector(
+          child: Hero(
+            tag: thing.information,
+            child: _centerThingCard(thing),
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
         _thingRow(targets),
       ]),
     );
@@ -44,9 +52,8 @@ class ThingScreen extends StatelessWidget {
     return Container(
       height: 175.0,
       child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: things.map((thing) => ThingCard(thing: thing)).toList()
-      ),
+          scrollDirection: Axis.horizontal,
+          children: things.map((thing) => ThingCard(thing: thing)).toList()),
     );
   }
 
@@ -62,5 +69,4 @@ class ThingScreen extends StatelessWidget {
         seekingThing.targets.map((uri) => rhizome.retrieve(uri));
     motorsportTargets.forEach((tag) => print(tag.information));
   }
-
 }
