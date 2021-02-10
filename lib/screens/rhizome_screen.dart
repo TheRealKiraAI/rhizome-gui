@@ -3,9 +3,7 @@ import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
 import 'package:rhizome_gui/screens/moveable_screen.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
 import '../models/rhizome_manager.dart';
-import '../widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
@@ -17,9 +15,6 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
-  double _scale = 1.0;
-  double _previousScale = 1.0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +47,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       context,
       MaterialPageRoute(builder: (context) => CreateInformationScreen()),
     );
-
-    // DEBUG
-    print("$result");
   }
 
   Widget _bottomNavigationBar() {
