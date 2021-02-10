@@ -17,25 +17,25 @@ class ThingCard extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ThingScreen(thing: thing)))
       },
-      child: DragTarget(
-        builder: (context, List<Thing> candidateData, rejectedData) {
-          return Container(
-            width: 150,
-            height: 150,
-            child: Card(
-              color: Colors.lightBlueAccent,
-              child: Center(
-                child: Text(thing.information),
-              ),
-            ),
-          );
+      child: LongPressDraggable(
+        feedback: _thingContainer(),
+        child: _thingContainer(),
+        onDragEnd: (details) {
+          print('dragged');
         },
-        onWillAccept: (data) {
-          return true;
-        },
-        onAccept: (data) {
-          print('accept');
-        },
+      ),
+    );
+  }
+
+  Widget _thingContainer() {
+    return Container(
+      width: 150,
+      height: 150,
+      child: Card(
+        color: Colors.lightBlueAccent,
+        child: Center(
+          child: Text(thing.information),
+        ),
       ),
     );
   }
