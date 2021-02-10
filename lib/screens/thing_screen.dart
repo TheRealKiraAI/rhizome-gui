@@ -41,8 +41,13 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget _thingRow(List<Thing> things) {
-    return Row(
-        children: things.map((thing) => ThingCard(thing: thing)).toList());
+    return Container(
+      height: 175.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: things.map((thing) => ThingCard(thing: thing)).toList()
+      ),
+    );
   }
 
   void debugPrint(Thing thing, Rhizome rhizome) {
