@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
-import 'package:rhizome_gui/screens/moveable_screen.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import '../models/rhizome_manager.dart';
 
@@ -56,12 +55,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          IconButton(
-              icon: Icon(Icons.compare_arrows),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MoveableScreen()));
-              }),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {},
