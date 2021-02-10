@@ -21,6 +21,7 @@ class ThingCard extends StatelessWidget {
         feedback: _thingContainer(),
         child: _thingContainer(),
         onDragEnd: (details) {
+          // todo: Setup drag targets
           print('dragged');
         },
       ),
