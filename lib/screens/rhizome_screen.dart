@@ -25,11 +25,9 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         appBar: AppBar(
           title: Text('Rhizome'),
         ),
-        body: OrientationBuilder(builder: (context, orientation) {
-          return GridView.count(
-              crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-              children: _thingCards(widget.rhizome));
-        }),
+        body: Stack(
+            children: _thingCards(widget.rhizome)
+          ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
