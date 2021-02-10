@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 
-class MoveableThing extends StatefulWidget { 
-  @override State<StatefulWidget> createState() { 
-   return _MoveableThingState(); 
-  } 
+class MoveableThing extends StatefulWidget {
+  final ThingCard thingCard;
+
+  MoveableThing(this.thingCard);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MoveableThingState();
+  }
 }
-class _MoveableThingState extends State<MoveableThing> {
 
+class _MoveableThingState extends State<MoveableThing> {
   double xPosition = 0;
   double yPosition = 0;
   Color color;
@@ -29,13 +35,8 @@ class _MoveableThingState extends State<MoveableThing> {
             yPosition += tapInfo.delta.dy;
           });
         },
-        child: Container(
-          width: 150,
-          height: 150,
-          color: color,
-        ),
+        child: widget.thingCard,
       ),
     );
   }
-
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
 import 'package:rhizome_gui/screens/moveable_screen.dart';
+import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 import '../models/rhizome_manager.dart';
 import '../widgets/thing_card.dart';
@@ -25,15 +26,17 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         appBar: AppBar(
           title: Text('Rhizome'),
         ),
-        body: Stack(
+        body: Container(
+          child: Stack(
             children: _thingCards(widget.rhizome)
           ),
+        ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
 
-  List<ThingCard> _thingCards(Rhizome rhizome) {
-    return rhizome.query().map((thing) => ThingCard(thing: thing)).toList();
+  List<MoveableThing> _thingCards(Rhizome rhizome) {
+    return rhizome.query().map((thing) => MoveableThing(ThingCard(thing: thing))).toList();
   }
 
   Widget _addButton() {

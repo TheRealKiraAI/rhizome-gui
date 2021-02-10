@@ -32,9 +32,9 @@ class _MoveableScreenState extends State<MoveableScreen> {
                 RaisedButton(
                   child: Text('Add Movable Thing'),
                   onPressed: () {
-                    setState(() {
-                      rhizomeContainer.add(MoveableThing());
-                    });
+                    // setState(() {
+                    //   rhizomeContainer.add(MoveableThing());
+                    // });
                   },
                 )
               ],
