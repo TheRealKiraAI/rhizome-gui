@@ -25,35 +25,11 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         appBar: AppBar(
           title: Text('Rhizome'),
         ),
-        body: GestureDetector(
-          onScaleStart: (ScaleStartDetails details) {
-            _previousScale = _scale;
-            setState(() {});
-          },
-          onScaleUpdate: (ScaleUpdateDetails details) {
-            _scale = _previousScale * details.scale;
-            setState(() {});
-          },
-          onScaleEnd: (ScaleEndDetails details) {
-            _previousScale = 1.0;
-            setState(() {});
-          },
-          child: RotatedBox(
-            quarterTurns: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Transform(
-                alignment: FractionalOffset.center,
-                transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-                child: OrientationBuilder(builder: (context, orientation) {
-                  return GridView.count(
-                      crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-                      children: _thingCards(widget.rhizome));
-                }),
-              ),
-            ),
-          ),
-        ),
+        body: OrientationBuilder(builder: (context, orientation) {
+          return GridView.count(
+              crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+              children: _thingCards(widget.rhizome));
+        }),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
