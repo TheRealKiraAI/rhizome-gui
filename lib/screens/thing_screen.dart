@@ -17,25 +17,27 @@ class ThingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(thing, rhizome);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       body: Column(children: [
         _thingRow(tags),
-        GestureDetector(
-          child: Hero(
-            tag: thing.information,
-            child: _centerThingCard(thing),
-          ),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
+        _centerHeroCard(context),
         _thingRow(targets),
       ]),
+    );
+  }
+
+  Widget _centerHeroCard(BuildContext context) {
+    return GestureDetector(
+      child: Hero(
+        tag: thing.information,
+        child: _centerThingCard(thing),
+      ),
+      onTap: () {
+        Navigator.pop(context);
+      },
     );
   }
 
@@ -55,18 +57,5 @@ class ThingScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: things.map((thing) => ThingCard(thing: thing)).toList()),
     );
-  }
-
-  void debugPrint(Thing thing, Rhizome rhizome) {
-    print('Focusing on thing...');
-    final seekingThing = rhizome.seek(thing.information);
-    print(seekingThing.information);
-    print('Tags:');
-    final seekingTags = seekingThing.tags.map((uri) => rhizome.retrieve(uri));
-    seekingTags.forEach((tag) => print(tag.information));
-    print('Targets:');
-    final motorsportTargets =
-        seekingThing.targets.map((uri) => rhizome.retrieve(uri));
-    motorsportTargets.forEach((tag) => print(tag.information));
   }
 }
