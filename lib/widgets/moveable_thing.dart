@@ -4,9 +4,9 @@ import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
-  Thing thingCard;
+  final Thing thing;
 
-  MoveableThing({this.thingCard});
+  MoveableThing({this.thing});
 
   @override
   State<StatefulWidget> createState() {
@@ -38,8 +38,8 @@ class _MoveableThingState extends State<MoveableThing> {
             });
           },
           child: Hero(
-            tag: widget.thingCard.information,
-            child: ThingCard(thing: widget.thingCard),
+            tag: widget.thing.information,
+            child: ThingCard(thing: widget.thing),
           ),
           onTap: () {
             Navigator.push(context,
