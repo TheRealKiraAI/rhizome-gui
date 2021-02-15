@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
-  final Thing thing;
+  final ThingCard thingCard;
 
-  MoveableThing({this.thing});
+  MoveableThing({this.thingCard});
 
   @override
   State<StatefulWidget> createState() {
@@ -38,8 +37,8 @@ class _MoveableThingState extends State<MoveableThing> {
             });
           },
           child: Hero(
-            tag: widget.thing.information,
-            child: ThingCard(thing: widget.thing),
+            tag: widget.thingCard,
+            child: widget.thingCard,
           ),
           onTap: () {
             Navigator.push(context,
