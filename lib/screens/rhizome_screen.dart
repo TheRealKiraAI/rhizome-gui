@@ -22,16 +22,17 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           title: Text('Rhizome'),
         ),
         body: Container(
-          child: Stack(
-            children: _thingCards(widget.rhizome)
-          ),
+          child: Stack(children: _thingCards(widget.rhizome)),
         ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
 
   List<MoveableThing> _thingCards(Rhizome rhizome) {
-    return rhizome.query().map((thing) => MoveableThing(thingCard: ThingCard(thing: thing))).toList();
+    return rhizome
+        .query()
+        .map((thing) => MoveableThing(thingCard: ThingCard(thing: thing)))
+        .toList();
   }
 
   Widget _addButton() {
@@ -43,10 +44,12 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   }
 
   _displayCreateInformationScreen(BuildContext context) async {
-    final result = await Navigator.push(
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CreateInformationScreen()),
     );
+    
+    setState(() {});
   }
 
   Widget _bottomNavigationBar() {
