@@ -30,15 +30,17 @@ class ThingScreen extends StatelessWidget {
   }
 
   Widget _centerHeroCard(BuildContext context) {
-    return GestureDetector(
-      child: Hero(
-        tag: thing.information,
-        child: _centerThingCard(thing),
+    return Column(children: [
+      GestureDetector(
+        child: Hero(
+          tag: thing.information,
+          child: _centerThingCard(thing),
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
       ),
-      onTap: () {
-        Navigator.pop(context);
-      },
-    );
+    ]);
   }
 
   Widget _centerThingCard(Thing thing) {
@@ -46,7 +48,7 @@ class ThingScreen extends StatelessWidget {
       color: Colors.purple,
       height: 300,
       width: 300,
-      child: ThingCard(thing: thing),
+      child: ThingCard(thing: thing, tags: tags, targets: targets),
     );
   }
 
