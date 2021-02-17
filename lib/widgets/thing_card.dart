@@ -34,32 +34,25 @@ class _ThingCardState extends State<ThingCard> {
             MaterialPageRoute(
                 builder: (context) => ThingScreen(thing: widget.thing)))
       },
-      // child: LongPressDraggable(
-      //   feedback: _thingContainer(accepted),
-      //   child: _thingContainer(accepted),
-      //   onDragEnd: (details) {
-      //     print('dragged');
-      //   },
-      // ),
       child: LongPressDraggable<Thing>(
-          data: widget.thing,
-          onDragStarted: () => print("start"),
-          onDragCompleted: () => print("completed"),
-          onDragEnd: (details) => print("ended"),
-          onDraggableCanceled: (data, data2) => print("canceled"),
+        data: widget.thing,
+        onDragStarted: () => print("start"),
+        onDragCompleted: () => print("completed"),
+        onDragEnd: (details) => print("ended"),
+        onDraggableCanceled: (data, data2) => print("canceled"),
+        child: _thingContainer(accepted),
+        childWhenDragging: Container(
+          width: 150,
+          height: 150,
+          color: Colors.blueGrey,
           child: _thingContainer(accepted),
-          childWhenDragging: Container(
-            width: 200,
-            height: 200,
-            color: Colors.blueGrey,
-            child: _thingContainer(accepted),
-          ),
-          feedback: Container(
-            width: 200,
-            height: 200,
-            color: Colors.blueGrey,
-            child: _thingContainer(accepted),
-          ),
+        ),
+        feedback: Container(
+          width: 150,
+          height: 150,
+          color: Colors.blueGrey,
+          child: _thingContainer(accepted),
+        ),
       ),
     );
   }
@@ -70,12 +63,15 @@ class _ThingCardState extends State<ThingCard> {
       children: [
         DragTarget<Thing>(
             onWillAccept: (Thing d) => true,
-            onAccept: (Thing d) => print("accept"),
+            onAccept: (Thing d) {
+              widget.thing.tagWith(d);
+              print(d);
+            },
             onLeave: (d) => print("leave"),
             builder: (context, candidateData, rejectedData) {
               return Container(
-                width: 200,
-                height: 200,
+                width: 150,
+                height: 150,
                 child: Card(
                   color: Colors.lightBlueAccent,
                   child: Center(
