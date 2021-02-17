@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/widgets/taggable_thing.dart';
 import '../screens/thing_screen.dart';
@@ -32,15 +31,6 @@ class ThingCard extends StatelessWidget {
         feedback: _thingContainer(accepted),
         child: _thingContainer(accepted),
         onDragEnd: (details) {
-          // todo: Setup drag targets
-          // taggableThing.addListener(() {
-          //   print('value updated!');
-          // });
-          // taggableThing.tagThing();
-          thing.tagWith(thing);
-          print(thing.information);
-          print(thing.tags);
-          // todo: tag things
           print('dragged');
         },
       ),
@@ -69,6 +59,7 @@ class ThingCard extends StatelessWidget {
             return true;
           },
           onAccept: (data) {
+            thing.tagWith(thing);
             accepted = true;
           },
         ),
