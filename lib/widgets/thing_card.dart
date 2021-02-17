@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/widgets/taggable_thing.dart';
 import '../screens/thing_screen.dart';
 
 class ThingCard extends StatefulWidget {
   final Uri uri;
   final Thing thing;
-  final TaggableThing taggableThing;
 
   ThingCard(
       {this.uri,
       this.thing,
       List<Thing> tags,
       List<Thing> targets,
-      this.taggableThing});
+      });
 
   @override
   _ThingCardState createState() => _ThingCardState();
