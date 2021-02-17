@@ -15,6 +15,18 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
+  double viewPort = 0.5;
+  PageController pageController;
+
+  int currentPage = 1;
+
+  @override
+  void initState() {
+    pageController = PageController(
+        initialPage: currentPage, viewportFraction: viewPort);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +34,13 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           title: Text('Rhizome'),
         ),
         body: Container(
-          child: Stack(children: _thingCards(widget.rhizome)),
+          child: InteractiveViewer(
+            panEnabled: false,
+            boundaryMargin: EdgeInsets.all(80),
+            minScale: 0.5,
+            maxScale: 4, 
+            child: Stack(children: _thingCards(widget.rhizome)),
+          ),
         ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
@@ -48,7 +66,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       context,
       MaterialPageRoute(builder: (context) => CreateInformationScreen()),
     );
-    
+
     setState(() {});
   }
 
