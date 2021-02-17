@@ -3,12 +3,10 @@ import 'package:rhizome/rhizome.dart';
 import '../screens/thing_screen.dart';
 
 class ThingCard extends StatefulWidget {
-  final Uri uri;
   final Thing thing;
 
   ThingCard(
-      {this.uri,
-      this.thing,
+      {this.thing,
       List<Thing> tags,
       List<Thing> targets,
       });

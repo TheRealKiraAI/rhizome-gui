@@ -37,7 +37,7 @@ class _MoveableThingState extends State<MoveableThing> {
             });
           },
           child: Hero(
-            tag: widget.thingCard,
+            tag: widget.thingCard.thing.information,
             child: widget.thingCard,
           ),
           onTap: () {

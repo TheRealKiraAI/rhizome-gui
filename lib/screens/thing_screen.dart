@@ -6,11 +6,12 @@ import '../models/rhizome_manager.dart';
 class ThingScreen extends StatelessWidget {
   final String title = "Thing Screen";
   final Thing thing;
+  final Uri uri;
   final Rhizome rhizome = RhizomeManager.getInstance();
   List<Thing> tags;
   List<Thing> targets;
 
-  ThingScreen({Key key, this.thing}) : super(key: key) {
+  ThingScreen({Key key, this.thing, this.uri}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
   }
