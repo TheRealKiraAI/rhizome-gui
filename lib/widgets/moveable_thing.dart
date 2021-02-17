@@ -30,20 +30,21 @@ class _MoveableThingState extends State<MoveableThing> {
       top: yPosition,
       left: xPosition,
       child: GestureDetector(
-          onPanUpdate: (tapInfo) {
-            setState(() {
-              xPosition += tapInfo.delta.dx;
-              yPosition += tapInfo.delta.dy;
-            });
-          },
-          child: Hero(
-            tag: widget.thingCard.thing.information,
-            child: widget.thingCard,
-          ),
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ThingScreen()));
-          }),
+        onPanUpdate: (tapInfo) {
+          setState(() {
+            xPosition += tapInfo.delta.dx;
+            yPosition += tapInfo.delta.dy;
+          });
+        },
+        child: Hero(
+          tag: widget.thingCard.thing.information,
+          child: widget.thingCard,
+        ),
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) {
+            return ThingScreen();
+          }));
+        }),
     );
   }
 }

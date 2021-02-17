@@ -19,29 +19,31 @@ class ThingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _thingRow(tags),
+            _centerHeroCard(context),
+            _thingRow(targets),
+          ]),
       ),
-      body: Column(children: [
-        _thingRow(tags),
-        _centerHeroCard(context),
-        _thingRow(targets),
-      ]),
     );
   }
 
   Widget _centerHeroCard(BuildContext context) {
-    return Column(children: [
-      GestureDetector(
+    return GestureDetector(
+      child: Center(
         child: Hero(
           tag: thing.information,
           child: _centerThingCard(thing),
+          transitionOnUserGestures: true,
         ),
-        onTap: () {
-          Navigator.pop(context);
-        },
       ),
-    ]);
+      onTap: () {
+        Navigator.pop(context);
+      },
+    );
   }
 
   Widget _centerThingCard(Thing thing) {
@@ -49,7 +51,7 @@ class ThingScreen extends StatelessWidget {
       color: Colors.purple,
       height: 300,
       width: 300,
-      child: ThingCard(thing: thing, tags: tags, targets: targets),
+      child: ThingCard(thing: thing),
     );
   }
 
