@@ -8,8 +8,9 @@ import '../models/rhizome_manager.dart';
 
 class RhizomeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
+  GlobalKey<NavigatorState> globalKey;
 
-  RhizomeScreen({Key key}) : super(key: key);
+  RhizomeScreen({Key key, this.globalKey}) : super(key: key);
 
   @override
   _RhizomeScreenState createState() => _RhizomeScreenState();
@@ -42,7 +43,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
               // get the scale from the ScaleUpdateDetails callback
               var myScale = details.scale;
               if (myScale >= 1.5) {
-                //moveableThing.onTapThingScreen();
+                MoveableThing.onTapThingScreen(widget.globalKey);
                 print("Thing Screen");
               }
               print(myScale); // print the scale here
@@ -60,7 +61,8 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   List<MoveableThing> _thingCards(Rhizome rhizome) {
     return rhizome
         .query()
-        .map((thing) => MoveableThing(thingCard: ThingCard(thing: thing)))
+        .map((thing) => MoveableThing(
+            globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
         .toList();
   }
 

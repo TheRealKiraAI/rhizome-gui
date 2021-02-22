@@ -11,6 +11,8 @@ class ThingScreen extends StatelessWidget {
   List<Thing> tags;
   List<Thing> targets;
 
+  static const routeName = '/thing_screen';
+
   ThingScreen({Key key, this.thing, this.uri}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();

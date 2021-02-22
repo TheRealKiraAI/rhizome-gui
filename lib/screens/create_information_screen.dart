@@ -3,18 +3,16 @@ import 'package:rhizome/rhizome.dart';
 import '../models/rhizome_manager.dart';
 
 class CreateInformationScreen extends StatefulWidget {
-
   final Rhizome rhizome = RhizomeManager.getInstance();
+  static const routeName = '/create_info';
 
   CreateInformationScreen({Key key}) : super(key: key);
 
   @override
   _CreateInformationScreen createState() => _CreateInformationScreen();
-
 }
 
 class _CreateInformationScreen extends State<CreateInformationScreen> {
-
   final formKey = GlobalKey<FormState>();
   Thing informationThing;
 
@@ -35,27 +33,23 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
     return Form(
       key: formKey,
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _textField('Information'),
-            _saveButton(context),
-          ],
-        )
-      ),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _textField('Information'),
+          _saveButton(context),
+        ],
+      )),
     );
   }
 
   TextFormField _textField(String label) {
     return TextFormField(
         autofocus: true,
-        decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder()
-          ),
+        decoration:
+            InputDecoration(labelText: label, border: OutlineInputBorder()),
         validator: (value) => value.isEmpty ? 'Please enter data' : null,
-        onSaved: (value) => informationThing = widget.rhizome.store(value)
-      );
+        onSaved: (value) => informationThing = widget.rhizome.store(value));
   }
 
   Widget _saveButton(BuildContext context) {
@@ -66,8 +60,6 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
             Navigator.pop(context, informationThing.toString());
           }
         },
-        child: Text('ADD TO RHIZOME')
-      );
+        child: Text('ADD TO RHIZOME'));
   }
-
 }

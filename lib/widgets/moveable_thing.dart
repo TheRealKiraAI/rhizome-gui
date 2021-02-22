@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:rhizome_gui/app.dart';
 
 class MoveableThing extends StatefulWidget {
   final ThingCard thingCard;
+  GlobalKey<NavigatorState> globalKey;
 
-  MoveableThing({this.thingCard});
+  MoveableThing({Key key, this.thingCard, this.globalKey}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     return _MoveableThingState();
+  }
+
+  static void onTapThingScreen(GlobalKey<NavigatorState> globalKey) {
+    print("onTap");
+    globalKey.currentState.pushNamed('/create_info');
   }
 }
 
@@ -30,21 +37,24 @@ class _MoveableThingState extends State<MoveableThing> {
       top: yPosition,
       left: xPosition,
       child: GestureDetector(
-        onPanUpdate: (tapInfo) {
-          setState(() {
-            xPosition += tapInfo.delta.dx;
-            yPosition += tapInfo.delta.dy;
-          });
-        },
-        child: Hero(
-          tag: widget.thingCard.thing.information,
-          child: widget.thingCard,
-        ),
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) {
-            return ThingScreen();
-          }));
-        }),
+          onPanUpdate: (tapInfo) {
+            setState(() {
+              xPosition += tapInfo.delta.dx;
+              yPosition += tapInfo.delta.dy;
+            });
+          },
+          child: Hero(
+            tag: widget.thingCard.thing.information,
+            child: widget.thingCard,
+          ),
+          onTap: () {
+            _onTapThingScreen();
+          }),
     );
+  }
+
+  void _onTapThingScreen() {
+    print('_ontap');
+    //widget.globalKey.currentState.pushNamed('thing_screen');
   }
 }
