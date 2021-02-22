@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
+import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 import '../models/rhizome_manager.dart';
@@ -17,13 +18,14 @@ class RhizomeScreen extends StatefulWidget {
 class _RhizomeScreenState extends State<RhizomeScreen> {
   double viewPort = 0.5;
   PageController pageController;
+  MoveableThing moveableThing;
 
   int currentPage = 1;
 
   @override
   void initState() {
-    pageController = PageController(
-        initialPage: currentPage, viewportFraction: viewPort);
+    pageController =
+        PageController(initialPage: currentPage, viewportFraction: viewPort);
     super.initState();
   }
 
@@ -35,10 +37,19 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         ),
         body: Container(
           child: InteractiveViewer(
-            panEnabled: false,
+            panEnabled: true,
+            onInteractionUpdate: (ScaleUpdateDetails details) {
+              // get the scale from the ScaleUpdateDetails callback
+              var myScale = details.scale;
+              if (myScale >= 1.5) {
+                //moveableThing.onTapThingScreen();
+                print("Thing Screen");
+              }
+              print(myScale); // print the scale here
+            },
             boundaryMargin: EdgeInsets.all(80),
             minScale: 0.5,
-            maxScale: 4, 
+            maxScale: 4,
             child: Stack(children: _thingCards(widget.rhizome)),
           ),
         ),
