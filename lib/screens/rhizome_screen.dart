@@ -17,19 +17,7 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
-  double viewPort = 0.5;
-  PageController pageController;
-  MoveableThing moveableThing;
-
-  int currentPage = 1;
   bool isZoom = false;
-
-  @override
-  void initState() {
-    pageController =
-        PageController(initialPage: currentPage, viewportFraction: viewPort);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +32,8 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
             minScale: 0.5,
             maxScale: 4,
             onInteractionUpdate: (ScaleUpdateDetails details) {
-              // get the scale from the ScaleUpdateDetails callback
               var myScale = details.scale;
               if (myScale >= 1.5) {
-                //MoveableThing.onTapThingScreen(widget.globalKey);
-                //print("Thing Screen");
                 isZoom = true;
                 Thing thing = widget.rhizome.store('test');
                 Navigator.push(
@@ -56,7 +41,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
                     MaterialPageRoute(
                         builder: (context) => ThingScreen(thing: thing)));
               }
-              print(myScale); // print the scale here
+              print(myScale);
             },
             child: Stack(children: _thingCards(widget.rhizome)),
           ),

@@ -32,10 +32,6 @@ class _ThingCardState extends State<ThingCard> {
       },
       child: LongPressDraggable<Thing>(
         data: widget.thing,
-        onDragStarted: () => print("start"),
-        onDragCompleted: () => print("completed"),
-        onDragEnd: (details) => print("ended"),
-        onDraggableCanceled: (data, data2) => print("canceled"),
         child: _thingContainer(accepted),
         childWhenDragging: Container(
           width: 150,
@@ -61,9 +57,7 @@ class _ThingCardState extends State<ThingCard> {
             onWillAccept: (Thing d) => true,
             onAccept: (Thing d) {
               widget.thing.tagWith(d);
-              print(d);
             },
-            onLeave: (d) => print("leave"),
             builder: (context, candidateData, rejectedData) {
               return Container(
                 width: 150,

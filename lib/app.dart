@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
 import 'package:rhizome_gui/screens/thing_screen.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
 import 'screens/rhizome_screen.dart';
 
 class App extends StatelessWidget {
