@@ -22,6 +22,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   MoveableThing moveableThing;
 
   int currentPage = 1;
+  bool isZoom = false;
 
   @override
   void initState() {
@@ -39,18 +40,24 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         body: Container(
           child: InteractiveViewer(
             panEnabled: true,
+            boundaryMargin: EdgeInsets.all(80),
+            minScale: 0.5,
+            maxScale: 4,
             onInteractionUpdate: (ScaleUpdateDetails details) {
               // get the scale from the ScaleUpdateDetails callback
               var myScale = details.scale;
               if (myScale >= 1.5) {
-                MoveableThing.onTapThingScreen(widget.globalKey);
-                print("Thing Screen");
+                //MoveableThing.onTapThingScreen(widget.globalKey);
+                //print("Thing Screen");
+                isZoom = true;
+                Thing thing = widget.rhizome.store('test');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ThingScreen(thing: thing)));
               }
               print(myScale); // print the scale here
             },
-            boundaryMargin: EdgeInsets.all(80),
-            minScale: 0.5,
-            maxScale: 4,
             child: Stack(children: _thingCards(widget.rhizome)),
           ),
         ),

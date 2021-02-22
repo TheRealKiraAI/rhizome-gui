@@ -21,12 +21,25 @@ class ThingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          _thingRow(tags),
-          _centerHeroCard(context),
-          _thingRow(targets),
-        ]),
+      body: InteractiveViewer(
+        panEnabled: true,
+        onInteractionUpdate: (ScaleUpdateDetails details) {
+          var myScale = details.scale;
+          if (myScale <= 2.0) {
+            Navigator.of(context).pop();
+          }
+          print(myScale);
+        },
+        boundaryMargin: EdgeInsets.all(80),
+        minScale: 0.5,
+        maxScale: 4,
+        child: Center(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            _thingRow(tags),
+            _centerHeroCard(context),
+            _thingRow(targets),
+          ]),
+        ),
       ),
     );
   }

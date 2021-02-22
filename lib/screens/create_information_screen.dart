@@ -22,22 +22,9 @@ class _CreateInformationScreen extends State<CreateInformationScreen> {
       appBar: AppBar(
         title: Text('Create Information'),
       ),
-      body: InteractiveViewer(
-        panEnabled: true,
-        onInteractionUpdate: (ScaleUpdateDetails details) {
-          var myScale = details.scale;
-          if (myScale <= 2.0) {
-            Navigator.of(context).pop();
-          }
-          print(myScale);
-        },
-        boundaryMargin: EdgeInsets.all(80),
-        minScale: 0.5,
-        maxScale: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: _informationForm(),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: _informationForm(),
       ),
     );
   }

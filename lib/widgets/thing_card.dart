@@ -4,7 +4,6 @@ import '../screens/thing_screen.dart';
 
 class ThingCard extends StatefulWidget {
   final Thing thing;
-  static const routeName = '/thing_card';
 
   ThingCard(
       {this.thing,
