@@ -22,13 +22,11 @@ class ThingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _thingRow(tags),
-            _centerHeroCard(context),
-            _thingRow(targets),
-          ]),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          _thingRow(tags),
+          _centerHeroCard(context),
+          _thingRow(targets),
+        ]),
       ),
     );
   }
