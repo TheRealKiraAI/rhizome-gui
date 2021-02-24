@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
   final ThingCard thingCard;
+  final Thing thing;
   GlobalKey<NavigatorState> globalKey;
 
-  MoveableThing({Key key, this.thingCard, this.globalKey}) : super(key: key);
+  MoveableThing({Key key, this.thingCard, this.thing, this.globalKey}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -42,7 +44,7 @@ class _MoveableThingState extends State<MoveableThing> {
           });
         },
         child: Hero(
-          tag: widget.thingCard.thing.information,
+          tag: widget.thing.information,
           child: widget.thingCard,
         ),
       ),
