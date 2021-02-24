@@ -4,6 +4,7 @@ import 'package:rhizome_gui/screens/create_information_screen.dart';
 import 'package:rhizome_gui/screens/thing_screen.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:rhizome_gui/widgets/thing_container.dart';
 import '../models/rhizome_manager.dart';
 
 class RhizomeScreen extends StatefulWidget {
@@ -44,21 +45,20 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
               print(myScale);
             },
             child: IndexedStack(
-              index: 0,
-              children: _thingCards(widget.rhizome)
-              )
-            )
+                index: 0,
+                children: _thingCards(widget.rhizome)
+            ),
             //child: Stack(children: _thingCards(widget.rhizome)),
           ),
+        ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
 
-  List<MoveableThing> _thingCards(Rhizome rhizome) {
+  List<ThingContainer> _thingCards(Rhizome rhizome) {
     return rhizome
         .query()
-        .map((thing) => MoveableThing(
-            globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
+        .map((thing) => ThingContainer(thing: thing))
         .toList();
   }
 
