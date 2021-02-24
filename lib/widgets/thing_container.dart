@@ -51,8 +51,9 @@ class _ThingContainerState extends State<ThingContainer> {
 
   Widget _centerThingCard(Thing thing) {
     return Container(
-      height: 300,
-      width: 300,
+      color: Colors.blueGrey,
+      height: 175,
+      width: 175,
       child: ThingCard(thing: thing),
     );
   }
