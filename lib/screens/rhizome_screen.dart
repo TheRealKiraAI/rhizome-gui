@@ -43,9 +43,13 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
               }
               print(myScale);
             },
-            child: Stack(children: _thingCards(widget.rhizome)),
+            child: IndexedStack(
+              index: 0,
+              children: _thingCards(widget.rhizome)
+              )
+            )
+            //child: Stack(children: _thingCards(widget.rhizome)),
           ),
-        ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
