@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import '../screens/thing_screen.dart';
+import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ThingCard extends StatefulWidget {
   final Thing thing;
@@ -28,7 +28,7 @@ class _ThingCardState extends State<ThingCard> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ThingScreen(thing: widget.thing)))
+                builder: (context) => ThingContainer(thing: widget.thing)))
       },
       child: LongPressDraggable<Thing>(
         data: widget.thing,

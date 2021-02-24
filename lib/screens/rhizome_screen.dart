@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
-import 'package:rhizome_gui/screens/thing_screen.dart';
-import 'package:rhizome_gui/widgets/moveable_thing.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
-import 'package:rhizome_gui/widgets/thing_container.dart';
-import '../models/rhizome_manager.dart';
+import 'package:rhizome_gui/widgets/thing_world.dart';
 
 class RhizomeScreen extends StatefulWidget {
-  final Rhizome rhizome = RhizomeManager.getInstance();
   GlobalKey<NavigatorState> globalKey;
 
   RhizomeScreen({Key key, this.globalKey}) : super(key: key);
@@ -27,39 +21,12 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           title: Text('Rhizome'),
         ),
         body: Container(
-          child: InteractiveViewer(
-            panEnabled: true,
-            boundaryMargin: EdgeInsets.all(80),
-            minScale: 0.5,
-            maxScale: 4,
-            onInteractionUpdate: (ScaleUpdateDetails details) {
-              var myScale = details.scale;
-              if (myScale >= 1.5) {
-                isZoom = true;
-                Thing thing = widget.rhizome.store('test');
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ThingScreen(thing: thing)));
-              }
-              print(myScale);
-            },
-            child: IndexedStack(
-                index: 0,
-                children: _thingCards(widget.rhizome)
-            ),
-            //child: Stack(children: _thingCards(widget.rhizome)),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: ThingWorld()
           ),
-        ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
-  }
-
-  List<ThingContainer> _thingCards(Rhizome rhizome) {
-    return rhizome
-        .query()
-        .map((thing) => ThingContainer(thing: thing))
-        .toList();
   }
 
   Widget _addButton() {
