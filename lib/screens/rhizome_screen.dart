@@ -9,7 +9,7 @@ import 'package:rhizome_gui/widgets/thing_world.dart';
 
 class RhizomeScreen extends StatefulWidget {
   GlobalKey<NavigatorState> globalKey;
-    final Rhizome rhizome = RhizomeManager.getInstance();
+  final Rhizome rhizome = RhizomeManager.getInstance();
 
   RhizomeScreen({Key key, this.globalKey}) : super(key: key);
 
@@ -29,24 +29,8 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: InteractiveViewer(
-          panEnabled: true,
-          boundaryMargin: EdgeInsets.all(double.infinity),
-          minScale: 0.1,
-          maxScale: 4,
-          onInteractionUpdate: (ScaleUpdateDetails details) {
-            var myScale = details.scale;
-            if (myScale >= 1.5) {
-              print('>= 1.5');
-            }
-
-            if (myScale <= 0.8) {
-              print('<= 0.8');
-            }
-            print(myScale);
-          },
-          child: Stack(children: _thingCards(widget.rhizome))
-        ),
+          child: ThingWorld(),
+          //child: Stack(children: _thingCards(widget.rhizome))),
           // child: IndexedStack(
           //     index: 0,
           //     children: _thingCards(widget.rhizome)
