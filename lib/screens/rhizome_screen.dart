@@ -29,14 +29,15 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: ThingWorld(),
+          //child: ThingWorld(),
           //child: Stack(children: _thingCards(widget.rhizome))),
-          // child: IndexedStack(
-          //     index: 0,
-          //     children: _thingCards(widget.rhizome)
-          //   )
-          // ),
-        ),
+          child: IndexedStack(
+              index: 0,
+              children: _thingCards(widget.rhizome)
+            )
+          ),
+          //child: Stack(children: _thingContainers(widget.rhizome))
+        //),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
@@ -46,6 +47,15 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         .query()
         .map((thing) => MoveableThing(
             globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
+        .toList();
+  }
+
+
+  // for individual thingContainers when zoomed out
+  List<ThingContainer> _thingContainers(Rhizome rhizome) {
+    return rhizome
+        .query()
+        .map((thing) => ThingContainer(thing: thing))
         .toList();
   }
 
