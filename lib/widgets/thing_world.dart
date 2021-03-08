@@ -5,7 +5,7 @@ import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 import 'package:rhizome_gui/widgets/thing_container.dart';
 
-class ThingWorld extends StatelessWidget {
+class ThingWorld extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
   GlobalKey<NavigatorState> globalKey;
   final List<MoveableThing> moveableThing;
@@ -16,45 +16,49 @@ class ThingWorld extends StatelessWidget {
   ThingWorld({Key key, this.globalKey, this.moveableThing, this.list})
       : super(key: key) {}
 
+  _ThingWorldState createState() => _ThingWorldState();
+}
+
+class _ThingWorldState extends State<ThingWorld> {
+  bool _active = false;
+  String velocity;
+  TransformationController controller = TransformationController();
+
+  void Function(ScaleUpdateDetails) _handleZoom() {
+    setState(() {
+      _active = !_active;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Thing thing = widget.rhizome.store('thing');
     //tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     //targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
     return Container(
       child: InteractiveViewer(
-          panEnabled: true,
-          boundaryMargin: EdgeInsets.all(double.infinity),
-          minScale: 0.1,
-          maxScale: 4,
-          onInteractionUpdate: (ScaleUpdateDetails details) {
-            var myScale = details.scale;
-            if (myScale >= 1.5) {
-              print('>= 1.5 world');
-              Thing thing = rhizome.store('thing');
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ThingContainer(thing: thing)));
-            }
-
-            if (myScale <= 0.8) {
-              print('<= 0.8');
-            }
-            print(myScale);
-          },
-          // child: Column(
-          //   children: _thingCards(rhizome)
-          // ),
-          //),
-          child: IndexedStack(index: 0, children: _thingCards(rhizome))),
-    );
-  }
+      panEnabled: true,
+      boundaryMargin: EdgeInsets.all(double.infinity),
+      minScale: 0.1,
+      maxScale: 4,
+      transformationController: controller,
+      onInteractionEnd: (ScaleEndDetails endDetails) {
+        print(endDetails);
+        print(endDetails.velocity);
+        controller.value = Matrix4.identity();
+        setState(() {
+          velocity = endDetails.velocity.toString();
+        });
+      },
+      child: ThingContainer(thing: thing)));
+      //child: Column(children: _thingCards(widget.rhizome)),
+    }
 
   List<MoveableThing> _thingCards(Rhizome rhizome) {
     return rhizome
         .query()
         .map((thing) => MoveableThing(
-            globalKey: globalKey, thingCard: ThingCard(thing: thing)))
+            globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
         .toList();
   }
 

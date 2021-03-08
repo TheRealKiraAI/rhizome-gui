@@ -26,18 +26,35 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         appBar: AppBar(
           title: Text('Rhizome'),
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          //child: ThingWorld(),
-          //child: Stack(children: _thingCards(widget.rhizome))),
-          child: IndexedStack(
-              index: 0,
-              children: _thingCards(widget.rhizome)
-            )
-          ),
+        body: InteractiveViewer(
+          panEnabled: true,
+          boundaryMargin: EdgeInsets.all(double.infinity),
+          minScale: 0.1,
+          maxScale: 4,
+          onInteractionUpdate: (ScaleUpdateDetails details) {
+            var myScale = details.scale;
+            if (myScale >= 1.5) {
+              print('>= 1.5 world');
+            }
+
+            if (myScale <= 0.8) {
+              print('<= 0.8');
+              setState(() {
+                ThingWorld();
+              });
+            }
+            print(myScale);
+          },
+          child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: ThingWorld(),
+              //child: Stack(children: _thingCards(widget.rhizome))),
+              // child: IndexedStack(
+              //     index: 0, children: _thingCards(widget.rhizome))),
           //child: Stack(children: _thingContainers(widget.rhizome))
-        //),
+        ),
+        ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
   }
@@ -49,7 +66,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
             globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
         .toList();
   }
-
 
   // for individual thingContainers when zoomed out
   List<ThingContainer> _thingContainers(Rhizome rhizome) {
