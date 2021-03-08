@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:rhizome_gui/widgets/test_container.dart';
 import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ThingWorld extends StatefulWidget {
@@ -20,22 +20,12 @@ class ThingWorld extends StatefulWidget {
 }
 
 class _ThingWorldState extends State<ThingWorld> {
-  bool _active = false;
   String velocity = "velocity";
   String scale = "scale";
   TransformationController controller = TransformationController();
 
-  void Function(ScaleUpdateDetails) _handleZoom() {
-    setState(() {
-      _active = !_active;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    Thing thing = widget.rhizome.store('thing');
-    //tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
-    //targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
     return Center(
       child: Column(children: [
         Expanded(
@@ -46,7 +36,6 @@ class _ThingWorldState extends State<ThingWorld> {
               maxScale: 4,
               transformationController: controller,
               onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-                print(updateDetails);
                 setState(() {
                   scale = updateDetails.scale.toString();
                   if (updateDetails.scale < 0.5) {
@@ -65,23 +54,12 @@ class _ThingWorldState extends State<ThingWorld> {
         Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
       ]),
     );
-    //child: Column(children: _thingCards(widget.rhizome)),
   }
 
-  List<MoveableThing> _thingCards(Rhizome rhizome) {
+  List<TestContainer> _thingCards(Rhizome rhizome) {
     return rhizome
         .query()
-        .map((thing) => MoveableThing(
-            globalKey: widget.globalKey, thingCard: ThingCard(thing: thing)))
+        .map((thing) => TestContainer(thing: thing))
         .toList();
-  }
-
-  Widget _thingRow(List<Thing> things) {
-    return Container(
-      height: 175.0,
-      child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: things.map((thing) => ThingCard(thing: thing)).toList()),
-    );
   }
 }

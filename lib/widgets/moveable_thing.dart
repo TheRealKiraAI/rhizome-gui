@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rhizome_gui/widgets/test_container.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
   final ThingCard thingCard;
+  final TestContainer testContainer;
   GlobalKey<NavigatorState> globalKey;
 
-  MoveableThing({Key key, this.thingCard, this.globalKey}) : super(key: key);
+  MoveableThing({Key key, this.thingCard, this.testContainer, this.globalKey}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
