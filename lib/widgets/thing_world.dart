@@ -60,7 +60,7 @@ class _ThingWorldState extends State<ThingWorld> {
                   velocity = endDetails.velocity.toString();
                 });
               },
-              child: ThingContainer(thing: thing)),
+              child: Stack(children: _thingCards(widget.rhizome))),
         ),
         Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
       ]),
