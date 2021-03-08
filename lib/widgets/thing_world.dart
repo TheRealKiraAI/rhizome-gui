@@ -21,7 +21,8 @@ class ThingWorld extends StatefulWidget {
 
 class _ThingWorldState extends State<ThingWorld> {
   bool _active = false;
-  String velocity;
+  String velocity = "velocity";
+  String scale = "scale";
   TransformationController controller = TransformationController();
 
   void Function(ScaleUpdateDetails) _handleZoom() {
@@ -35,24 +36,37 @@ class _ThingWorldState extends State<ThingWorld> {
     Thing thing = widget.rhizome.store('thing');
     //tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     //targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
-    return Container(
-      child: InteractiveViewer(
-      panEnabled: true,
-      boundaryMargin: EdgeInsets.all(double.infinity),
-      minScale: 0.1,
-      maxScale: 4,
-      transformationController: controller,
-      onInteractionEnd: (ScaleEndDetails endDetails) {
-        print(endDetails);
-        print(endDetails.velocity);
-        controller.value = Matrix4.identity();
-        setState(() {
-          velocity = endDetails.velocity.toString();
-        });
-      },
-      child: ThingContainer(thing: thing)));
-      //child: Column(children: _thingCards(widget.rhizome)),
-    }
+    return Center(
+      child: Column(children: [
+        Expanded(
+          child: InteractiveViewer(
+              panEnabled: true,
+              boundaryMargin: EdgeInsets.all(double.infinity),
+              minScale: 0.1,
+              maxScale: 4,
+              transformationController: controller,
+              onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+                print(updateDetails);
+                setState(() {
+                  scale = updateDetails.scale.toString();
+                  if (updateDetails.scale < 0.5) {
+                    scale = "<0.5";
+                  }
+                });
+              },
+              onInteractionEnd: (ScaleEndDetails endDetails) {
+                controller.value = Matrix4.identity();
+                setState(() {
+                  velocity = endDetails.velocity.toString();
+                });
+              },
+              child: ThingContainer(thing: thing)),
+        ),
+        Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
+      ]),
+    );
+    //child: Column(children: _thingCards(widget.rhizome)),
+  }
 
   List<MoveableThing> _thingCards(Rhizome rhizome) {
     return rhizome
