@@ -21,16 +21,14 @@ class ThingContainer extends StatefulWidget {
 class _ThingContainerState extends State<ThingContainer> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          _thingRow(widget.tags),
-          //_centerHeroCard(context),
-          _thingRow(widget.targets),
-          //_centerThingCard(widget.thing),
-        ]),
-      ),
-    );
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      _thingRow(widget.tags),
+      _thingRow(widget.targets)
+      //_thingRow(widget.tags),
+      //_centerHeroCard(context),
+      //_thingRow(widget.targets),
+      //_centerThingCard(widget.thing),
+    ]);
   }
 
   Widget _centerHeroCard(BuildContext context) {
@@ -51,11 +49,10 @@ class _ThingContainerState extends State<ThingContainer> {
   Widget _centerThingCard(Thing thing) {
     return Container(
       color: Colors.blueGrey,
-      height: 175,
-      width: 175,
       child: ThingCard(thing: thing),
     );
   }
+
   Widget _thingRow(List<Thing> things) {
     return Container(
       height: 175.0,

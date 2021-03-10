@@ -74,7 +74,7 @@ class _ThingWorldState extends State<ThingWorld> {
                     children: <Widget>[
                       Expanded(
                         flex: 11,
-                        child: ThingCard(thing: moabThing),
+                        child: ThingContainer(thing: moabThing),
                       ),
                     ],
                   )
