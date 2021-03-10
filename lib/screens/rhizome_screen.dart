@@ -27,9 +27,9 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           title: Text('Rhizome'),
         ),
         body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: ThingWorld(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: ThingWorld(),
         ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());

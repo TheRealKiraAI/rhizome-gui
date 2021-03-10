@@ -9,9 +9,7 @@ class ThingContainer extends StatefulWidget {
   List<Thing> tags;
   List<Thing> targets;
 
-  ThingContainer(
-      {Key key, this.thing})
-      : super(key: key) {
+  ThingContainer({Key key, this.thing}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
   }
@@ -27,8 +25,9 @@ class _ThingContainerState extends State<ThingContainer> {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           _thingRow(widget.tags),
-          _centerHeroCard(context),
+          //_centerHeroCard(context),
           _thingRow(widget.targets),
+          //_centerThingCard(widget.thing),
         ]),
       ),
     );
@@ -57,7 +56,6 @@ class _ThingContainerState extends State<ThingContainer> {
       child: ThingCard(thing: thing),
     );
   }
-
   Widget _thingRow(List<Thing> things) {
     return Container(
       height: 175.0,
