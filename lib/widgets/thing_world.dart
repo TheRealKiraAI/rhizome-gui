@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
-import 'package:rhizome_gui/widgets/test_container.dart';
 import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ThingWorld extends StatefulWidget {
@@ -14,7 +13,7 @@ class ThingWorld extends StatefulWidget {
   List<Thing> targets;
 
   ThingWorld({Key key, this.globalKey, this.moveableThing, this.list})
-      : super(key: key) {}
+      : super(key: key);
 
   _ThingWorldState createState() => _ThingWorldState();
 }
@@ -49,17 +48,10 @@ class _ThingWorldState extends State<ThingWorld> {
                   velocity = endDetails.velocity.toString();
                 });
               },
-              child: Stack(children: _thingCards(widget.rhizome))),
+              child: Image.asset('assets/images/moab.jpg')),
         ),
         Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
       ]),
     );
-  }
-
-  List<TestContainer> _thingCards(Rhizome rhizome) {
-    return rhizome
-        .query()
-        .map((thing) => TestContainer(thing: thing))
-        .toList();
   }
 }
