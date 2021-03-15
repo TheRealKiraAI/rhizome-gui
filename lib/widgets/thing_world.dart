@@ -61,17 +61,24 @@ class _ThingWorldState extends State<ThingWorld> {
             child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Column(children: [
+              Column( 
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                 Container(
-                  margin: EdgeInsets.all(25.0),
-                  height: 50,
-                  width: 50,
+                  margin: EdgeInsets.all(10),
+                  width: 100,
+                  height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.purple,
-                    shape: BoxShape.circle
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage('https://media.deseretdigital.com/file/bcecd61572?type=jpeg&quality=55&c=15&a=4379240d'),
+                      fit: BoxFit.fill
+                    ),
                   ),
-                )
-              ]),
+                ),
+                Text('Joe', textScaleFactor: 1.5),
+                ],
+              ),
               Container(
                 height: SizeConfig.blockSizeVertical * 70,
                 width: SizeConfig.blockSizeHorizontal * 70,
@@ -80,22 +87,26 @@ class _ThingWorldState extends State<ThingWorld> {
                       thing: rhizome.seek('Moab'), centerImage: moabImage),
                 ),
               ),
-              Row( 
+              Column( 
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                 Container(
-                  margin: EdgeInsets.all(25.0),
-                  height: 50,
-                  width: 50,
+                  margin: EdgeInsets.all(10),
+                  width: 100,
+                  height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.purple,
-                    shape: BoxShape.circle
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage('https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/ZionNPTomMorrisSmall.jpg'),
+                      fit: BoxFit.fill
+                    ),
                   ),
-                )
-              ]),
-            ]
-          )),
-        )  : Expanded(
+                ),
+                Text('Zion', textScaleFactor: 1.5),
+                ],
+              ) 
+            ])))
+            : Expanded(
             child: InteractiveViewer(
                 panEnabled: true,
                 boundaryMargin: EdgeInsets.all(double.infinity),
