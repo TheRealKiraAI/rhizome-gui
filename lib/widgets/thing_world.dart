@@ -35,11 +35,6 @@ class _ThingWorldState extends State<ThingWorld> {
   Widget build(BuildContext context) {
     final Rhizome rhizome = RhizomeManager.getInstance();
     final moabImage = Image.asset('assets/images/moab.jpg');
-    final moabThing = rhizome.store('moab thing');
-    final thing = rhizome.store('thing');
-
-    moabThing.tagWith(thing);
-    thing.tagWith(moabThing);
 
     return Column(children: [
       visibilityTag
@@ -66,19 +61,11 @@ class _ThingWorldState extends State<ThingWorld> {
                   child: Container(
                     child: Center(
                       child: ThingContainer(
-                          thing: moabThing, centerImage: moabImage),
+                          thing: rhizome.seek('Moab'), centerImage: moabImage),
                     ),
                   ),
                 ),
               ]),
-              //),
-              // Expanded(
-              //     child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         crossAxisAlignment: CrossAxisAlignment.center,
-              //         children: [
-              //       Expanded(child: Container(child: Center(child: moabImage)))
-              //     ])),
             )
           : Expanded(
               child: InteractiveViewer(
@@ -98,27 +85,5 @@ class _ThingWorldState extends State<ThingWorld> {
                   child: moabImage),
             ),
     ]);
-    // Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
-    // Container(
-    //     child: Column(
-    //   children: <Widget>[
-    //     visibilityTag
-    //         ? Row(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: <Widget>[
-    //             Expanded(
-    //               flex: 11,
-    //               child: Center(
-    //                 child: ThingContainer(thing: moabThing),
-    //               ),
-    //             ),
-    //           ],
-    //           )
-    //         : new Container(),
-    //   ],
-    // )),
-    //],
-    //);
   }
 }

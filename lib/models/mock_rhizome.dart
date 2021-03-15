@@ -4,17 +4,18 @@ import 'package:rhizome/rhizome.dart';
 Rhizome mockRhizome() {
   final rhizome = Rhizome();
 
-  final f1 = rhizome.store('Formula 1');
-  final motorsport = rhizome.store('Motorsport');
-  final hamilton = rhizome.store('Lewis Hamilton');
-  final senna = rhizome.store('Ayrton Senna');
+  final moab = rhizome.store('Moab');
+  final utah = rhizome.store('Utah');
+  final biking = rhizome.store('Mountain Biking');
+  final arches = rhizome.store('Arches National Park');
 
-  f1.tagWith(motorsport);
-  motorsport.tagWith(f1);
-  hamilton.tagWith(senna);
-  hamilton.tagWith(f1);
-  senna.tagWith(hamilton);
-  senna.tagWith(f1);
+  moab.tagWith(utah);
+  moab.tagWith(biking);
+  utah.tagWith(moab);
+  biking.tagWith(arches);
+  biking.tagWith(utah);
+  utah.tagWith(biking);
+  utah.tagWith(moab);
 
   return rhizome;
 }
