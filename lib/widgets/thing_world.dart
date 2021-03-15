@@ -43,7 +43,21 @@ class _ThingWorldState extends State<ThingWorld> {
 
     return Column(children: [
       visibilityTag
-          ? Row(
+          ? InteractiveViewer(
+                  panEnabled: true,
+                  boundaryMargin: EdgeInsets.all(double.infinity),
+                  minScale: 0.1,
+                  maxScale: 4,
+                  transformationController: controller,
+                  onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+                    setState(() {
+                      scale = updateDetails.scale.toString();
+                      if (updateDetails.scale > 1.5) {
+                        _zoomedOut(false);
+                      }
+                    });
+                  },
+                  child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -56,7 +70,7 @@ class _ThingWorldState extends State<ThingWorld> {
                     ),
                   ),
                 ),
-              ],
+              ]),
               //),
               // Expanded(
               //     child: Row(
@@ -80,9 +94,6 @@ class _ThingWorldState extends State<ThingWorld> {
                         _zoomedOut(true);
                       }
                     });
-                  },
-                  onInteractionEnd: (ScaleEndDetails endDetails) {
-                    //controller.value = Matrix4.identity();
                   },
                   child: moabImage),
             ),
