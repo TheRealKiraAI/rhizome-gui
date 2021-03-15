@@ -41,47 +41,71 @@ class _ThingWorldState extends State<ThingWorld> {
     moabThing.tagWith(thing);
     thing.tagWith(moabThing);
 
-    return Center(
-        child: Column(
-      children: [
-        Expanded(
-          child: InteractiveViewer(
-              panEnabled: true,
-              boundaryMargin: EdgeInsets.all(double.infinity),
-              minScale: 0.1,
-              maxScale: 4,
-              transformationController: controller,
-              onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-                setState(() {
-                  scale = updateDetails.scale.toString();
-                  if (updateDetails.scale < 0.5) {
-                    _zoomedOut(true);
-                  }
-                });
-              },
-              onInteractionEnd: (ScaleEndDetails endDetails) {
-                //controller.value = Matrix4.identity();
-              },
-              child: moabImage),
-        ),
-        Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
-        Container(
-            child: Column(
-          children: <Widget>[
-            visibilityTag
-                ? Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 11,
-                        child: ThingContainer(thing: moabThing),
-                      ),
-                    ],
-                  )
-                : new Container(),
-          ],
-        )),
-      ],
-    ));
+    return Column(children: [
+      //visibilityTag ? Row(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 11,
+            child: Container(
+              child: Center(
+                child: ThingContainer(thing: moabThing, centerImage: moabImage),
+              ),
+            ),
+          ),
+        ],
+      ),
+      // Expanded(
+      //     child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         crossAxisAlignment: CrossAxisAlignment.center,
+      //         children: [
+      //       Expanded(child: Container(child: Center(child: moabImage)))
+      //     ])),
+    ]);
+    // ) : Expanded(
+    //   child: InteractiveViewer(
+    //       panEnabled: true,
+    //       boundaryMargin: EdgeInsets.all(double.infinity),
+    //       minScale: 0.1,
+    //       maxScale: 4,
+    //       transformationController: controller,
+    //       onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+    //         setState(() {
+    //           scale = updateDetails.scale.toString();
+    //           if (updateDetails.scale < 0.5) {
+    //             _zoomedOut(true);
+    //           }
+    //         });
+    //       },
+    //       onInteractionEnd: (ScaleEndDetails endDetails) {
+    //         //controller.value = Matrix4.identity();
+    //       },
+    //       child: moabImage),
+    // ),
+    // Text(scale, style: TextStyle(fontWeight: FontWeight.bold)),
+    // Container(
+    //     child: Column(
+    //   children: <Widget>[
+    //     visibilityTag
+    //         ? Row(
+    //           mainAxisAlignment: MainAxisAlignment.start,
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: <Widget>[
+    //             Expanded(
+    //               flex: 11,
+    //               child: Center(
+    //                 child: ThingContainer(thing: moabThing),
+    //               ),
+    //             ),
+    //           ],
+    //           )
+    //         : new Container(),
+    //   ],
+    // )),
+    //],
+    //);
   }
 }

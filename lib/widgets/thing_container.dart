@@ -6,10 +6,11 @@ import '../models/rhizome_manager.dart';
 class ThingContainer extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
   final Thing thing;
+  final Image centerImage;
   List<Thing> tags;
   List<Thing> targets;
 
-  ThingContainer({Key key, this.thing}) : super(key: key) {
+  ThingContainer({Key key, this.thing, this.centerImage}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
   }
@@ -23,6 +24,7 @@ class _ThingContainerState extends State<ThingContainer> {
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       _thingRow(widget.tags),
+      _centerThingCard(widget.thing, widget.centerImage),
       _thingRow(widget.targets)
       //_thingRow(widget.tags),
       //_centerHeroCard(context),
@@ -31,25 +33,26 @@ class _ThingContainerState extends State<ThingContainer> {
     ]);
   }
 
-  Widget _centerHeroCard(BuildContext context) {
-    return GestureDetector(
-      child: Center(
-        child: Hero(
-          tag: widget.thing.information,
-          child: _centerThingCard(widget.thing),
-          transitionOnUserGestures: true,
-        ),
-      ),
-      onTap: () {
-        Navigator.pop(context);
-      },
-    );
-  }
+  // Widget _centerHeroCard(BuildContext context) {
+  //   return GestureDetector(
+  //     child: Center(
+  //       child: Hero(
+  //         tag: widget.thing.information,
+  //         child: _centerThingCard(widget.thing),
+  //         transitionOnUserGestures: true,
+  //       ),
+  //     ),
+  //     onTap: () {
+  //       Navigator.pop(context);
+  //     },
+  //   );
+  // }
 
-  Widget _centerThingCard(Thing thing) {
+  Widget _centerThingCard(Thing thing, Image image) {
     return Container(
       color: Colors.blueGrey,
-      child: ThingCard(thing: thing),
+      //child: ThingCard(thing: thing),
+      child: image,
     );
   }
 
