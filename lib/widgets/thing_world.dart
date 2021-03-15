@@ -37,38 +37,65 @@ class _ThingWorldState extends State<ThingWorld> {
     final Rhizome rhizome = RhizomeManager.getInstance();
     final moabImage = Image.asset('assets/images/moab.jpg');
 
-    return Column(
+    return Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
       visibilityTag
         ? InteractiveViewer(
-                panEnabled: true,
-                boundaryMargin: EdgeInsets.all(double.infinity),
-                minScale: 0.1,
-                maxScale: 4,
-                transformationController: controller,
-                onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-                  setState(() {
-                    scale = updateDetails.scale.toString();
-                    if (updateDetails.scale > 1.5) {
-                      _zoomedOut(false);
-                    }
-                  });
-                },
-                child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        panEnabled: true,
+        boundaryMargin: EdgeInsets.all(double.infinity),
+        minScale: 0.1,
+        maxScale: 4,
+        transformationController: controller,
+        onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+          setState(() {
+            scale = updateDetails.scale.toString();
+            if (updateDetails.scale > 1.5) {
+              _zoomedOut(false);
+            }
+          });
+        },
+        child: 
+          Container(
+            color: Colors.lightGreen,
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Container(
-                                    height: SizeConfig.blockSizeVertical * 70,
-                  width: SizeConfig.blockSizeHorizontal * 70,
-                  child: Center(
-                    child: ThingContainer(
-                        thing: rhizome.seek('Moab'), centerImage: moabImage),
+              Column(children: [
+                Container(
+                  margin: EdgeInsets.all(25.0),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    shape: BoxShape.circle
                   ),
+                )
+              ]),
+              Container(
+                height: SizeConfig.blockSizeVertical * 70,
+                width: SizeConfig.blockSizeHorizontal * 70,
+                child: Center(
+                  child: ThingContainer(
+                      thing: rhizome.seek('Moab'), centerImage: moabImage),
                 ),
-            ]),
-          )
-        : Expanded(
+              ),
+              Row( 
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                Container(
+                  margin: EdgeInsets.all(25.0),
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    shape: BoxShape.circle
+                  ),
+                )
+              ]),
+            ]
+          )),
+        )  : Expanded(
             child: InteractiveViewer(
                 panEnabled: true,
                 boundaryMargin: EdgeInsets.all(double.infinity),
@@ -85,6 +112,6 @@ class _ThingWorldState extends State<ThingWorld> {
                 },
                 child: moabImage),
           ),
-    ]);
+    ]));
   }
 }

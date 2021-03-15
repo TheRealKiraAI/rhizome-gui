@@ -54,6 +54,7 @@ class _ThingContainerState extends State<ThingContainer> {
 
   Widget _thingRow(List<Thing> things) {
     return Container(
+      color: Colors.lightBlue,
       height: 175.0,
       child: ListView(
           scrollDirection: Axis.horizontal,
