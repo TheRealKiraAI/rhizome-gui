@@ -26,10 +26,6 @@ class _ThingContainerState extends State<ThingContainer> {
       _thingRow(widget.tags),
       _centerThingCard(widget.thing, widget.centerImage),
       _thingRow(widget.targets)
-      //_thingRow(widget.tags),
-      //_centerHeroCard(context),
-      //_thingRow(widget.targets),
-      //_centerThingCard(widget.thing),
     ]);
   }
 
@@ -51,7 +47,7 @@ class _ThingContainerState extends State<ThingContainer> {
   Widget _centerThingCard(Thing thing, Image image) {
     return Container(
       color: Colors.blueGrey,
-      //child: ThingCard(thing: thing),
+      //child: ThingCard(thing: thing, image: image),
       child: image,
     );
   }
