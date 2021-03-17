@@ -37,11 +37,10 @@ class _ThingWorldState extends State<ThingWorld> {
     final Rhizome rhizome = RhizomeManager.getInstance();
     final moabImage = Image.asset('assets/images/moab.jpg');
 
-    return Center(child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+    return Center(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       visibilityTag
-        ? InteractiveViewer(
+      ? InteractiveViewer(
         panEnabled: true,
         boundaryMargin: EdgeInsets.all(double.infinity),
         minScale: 0.1,
@@ -55,74 +54,68 @@ class _ThingWorldState extends State<ThingWorld> {
             }
           });
         },
-        child: 
-          Container(
-            color: Colors.lightGreen,
-            child: Row(
+        child: Container(
+          color: Colors.lightGreen,
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Column( 
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage('https://media.deseretdigital.com/file/bcecd61572?type=jpeg&quality=55&c=15&a=4379240d'),
-                      fit: BoxFit.fill
-                    ),
-                  ),
-                ),
-                Text('Joe', textScaleFactor: 1.5),
-                ],
-              ),
-              Container(
-                height: SizeConfig.blockSizeVertical * 70,
-                width: SizeConfig.blockSizeHorizontal * 70,
-                child: Center(
-                  child: ThingContainer(
-                      thing: rhizome.seek('Moab'), centerImage: moabImage),
-                ),
-              ),
-              Column( 
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: NetworkImage('https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/ZionNPTomMorrisSmall.jpg'),
-                      fit: BoxFit.fill
-                    ),
-                  ),
-                ),
-                Text('Zion', textScaleFactor: 1.5),
-                ],
-              ) 
-            ])))
-            : Expanded(
-            child: InteractiveViewer(
-                panEnabled: true,
-                boundaryMargin: EdgeInsets.all(double.infinity),
-                minScale: 0.1,
-                maxScale: 4,
-                transformationController: controller,
-                onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-                  setState(() {
-                    scale = updateDetails.scale.toString();
-                    if (updateDetails.scale < 0.8) {
-                      _zoomedOut(true);
-                    }
-                  });
-                },
-                child: moabImage),
+              circleCard(
+                  "https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/ZionNPTomMorrisSmall.jpg",
+                  "Zion"),
+              centerCard(rhizome, moabImage),
+              circleCard(
+                  "https://media.deseretdigital.com/file/bcecd61572?type=jpeg&quality=55&c=15&a=4379240d",
+                  "Joe"),
+            ]
           ),
+        ),
+      )
+      : Expanded(
+          child: InteractiveViewer(
+              panEnabled: true,
+              boundaryMargin: EdgeInsets.all(double.infinity),
+              minScale: 0.1,
+              maxScale: 4,
+              transformationController: controller,
+              onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+                setState(() {
+                  scale = updateDetails.scale.toString();
+                  if (updateDetails.scale < 0.8) {
+                    _zoomedOut(true);
+                  }
+                });
+              },
+              child: moabImage),
+        ),
     ]));
+  }
+
+  Widget circleCard(String url, String label) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.all(10),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fill),
+          ),
+        ),
+        Text(label, textScaleFactor: 1.5),
+      ],
+    );
+  }
+
+  Widget centerCard(Rhizome rhizome, dynamic image) {
+    return Container(
+      height: SizeConfig.blockSizeVertical * 70,
+      width: SizeConfig.blockSizeHorizontal * 70,
+      child: Center(
+        child:
+          ThingContainer(thing: rhizome.seek('Moab'), centerImage: image),
+      ),
+    );
   }
 }
