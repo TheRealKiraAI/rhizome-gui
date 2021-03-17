@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/screens/create_information_screen.dart';
-import 'package:rhizome_gui/widgets/moveable_thing.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
-import 'package:rhizome_gui/widgets/thing_container.dart';
+import 'package:rhizome_gui/widgets/center_thing_screen.dart';
 import 'package:rhizome_gui/widgets/thing_world.dart';
 
 class RhizomeScreen extends StatefulWidget {
@@ -29,7 +27,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: ThingWorld(),
+          child: CenterThingScreen(),
         ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());
