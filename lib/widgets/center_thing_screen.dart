@@ -28,16 +28,11 @@ class _CenterThingScreen extends State<CenterThingScreen> {
     SizeConfig().init(context);
     final Rhizome rhizome = RhizomeManager.getInstance();
     final moabImage = Image.asset('assets/images/moab.jpg');
+    final moab = rhizome.store(moabImage);
 
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, 
-        children: [
-          Expanded(
-            child: moabImage
-          ),
-        ]
-      )
-    );
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Expanded(child: moabImage),
+    ]));
   }
 }
