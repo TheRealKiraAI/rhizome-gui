@@ -6,7 +6,7 @@ import '../models/rhizome_manager.dart';
 class ThingContainer extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
   final Thing thing;
-  final Image centerImage;
+  final dynamic centerImage;
   List<Thing> tags;
   List<Thing> targets;
 
@@ -24,7 +24,7 @@ class _ThingContainerState extends State<ThingContainer> {
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       _thingRow(widget.tags),
-      _centerThingCard(widget.thing, widget.centerImage),
+      _centerThingCard(widget.thing),
       _thingRow(widget.targets)
     ]);
   }
@@ -44,11 +44,10 @@ class _ThingContainerState extends State<ThingContainer> {
   //   );
   // }
 
-  Widget _centerThingCard(Thing thing, Image image) {
+  Widget _centerThingCard(Thing thing) {
     return Container(
       color: Colors.blueGrey,
-      //child: ThingCard(thing: thing, image: image),
-      child: image,
+      child: ThingCard(thing: thing),
     );
   }
 

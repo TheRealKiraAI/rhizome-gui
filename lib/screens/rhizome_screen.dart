@@ -27,7 +27,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: CenterThingScreen(),
+          child: ThingWorld(),
         ),
         floatingActionButton: _addButton(),
         bottomNavigationBar: _bottomNavigationBar());

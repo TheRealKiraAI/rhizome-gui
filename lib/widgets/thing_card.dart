@@ -24,12 +24,12 @@ class _ThingCardState extends State<ThingCard> {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(Colors.deepOrange),
       ),
-      onPressed: () => {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ThingContainer(thing: widget.thing)))
-      },
+      // onPressed: () => {
+      //   Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (context) => ThingContainer(thing: widget.thing)))
+      // },
       child: LongPressDraggable<Thing>(
         data: widget.thing,
         child: _thingContainer(accepted),
