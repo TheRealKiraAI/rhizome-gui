@@ -16,7 +16,7 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
-  bool visibilityTag = false;
+  bool visibilityTag = true;
 
   void _zoomedOut(bool visibility) {
     setState(() {
