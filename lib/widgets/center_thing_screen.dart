@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/models/rhizome_manager.dart';
-import 'package:rhizome_gui/utils/size_config.dart';
-import 'package:rhizome_gui/widgets/moveable_thing.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
-import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class CenterThingScreen extends StatefulWidget {
   final Thing thing;
