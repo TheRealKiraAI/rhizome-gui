@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rhizome: ^0.0.2-dev.5
+  rhizome: ^0.0.2-dev.6
   zoom_widget: ^0.1.3
 
 
