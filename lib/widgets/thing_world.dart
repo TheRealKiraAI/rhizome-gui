@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
@@ -13,7 +15,7 @@ class ThingWorld extends StatefulWidget {
   List<Thing> tags;
   List<Thing> targets;
 
-  ThingWorld({Key key, this.globalKey, this.moveableThing, this.list})
+  ThingWorld({Key key, this.globalKey, this.moveableThing, this.list, Thing thing})
       : super(key: key);
 
   _ThingWorldState createState() => _ThingWorldState();
@@ -38,11 +40,13 @@ class _ThingWorldState extends State<ThingWorld> {
     final Rhizome rhizome = RhizomeManager.getInstance();
     final moabImage = Image.asset('assets/images/moab.jpg');
     final moabThing = rhizome.store('Moab Thing');
+    final joe = rhizome.store('Joe');
+    final zion = rhizome.store('Zion');
 
     return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      visibilityTag
-          ? InteractiveViewer(
+      
+          InteractiveViewer(
               panEnabled: true,
               boundaryMargin: EdgeInsets.all(double.infinity),
               minScale: 0.1,
@@ -62,49 +66,42 @@ class _ThingWorldState extends State<ThingWorld> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       circleCard(
-                          "https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/ZionNPTomMorrisSmall.jpg",
+                          zion,
                           "Zion"),
                       centerCard(rhizome, moabThing),
                       circleCard(
-                          "https://media.deseretdigital.com/file/bcecd61572?type=jpeg&quality=55&c=15&a=4379240d",
+                         joe,
                           "Joe"),
                     ]),
               ),
-            )
-          : Expanded(
-              child: InteractiveViewer(
-                  panEnabled: true,
-                  boundaryMargin: EdgeInsets.all(double.infinity),
-                  minScale: 0.1,
-                  maxScale: 4,
-                  transformationController: controller,
-                  onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-                    setState(() {
-                      scale = updateDetails.scale.toString();
-                      if (updateDetails.scale < 0.8) {
-                        _zoomedOut(true);
-                      }
-                    });
-                  },
-                  child: ThingCard(thing: moabThing),
             ),
-          )
-    ]));
+        ]),
+        );
   }
 
-  Widget circleCard(String url, String label) {
+  // Widget circleCard(String url, String label) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: [
+  //       Container(
+  //         margin: EdgeInsets.all(10),
+  //         width: 100,
+  //         height: 100,
+  //         decoration: BoxDecoration(
+  //           shape: BoxShape.circle,
+  //           image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fill),
+  //         ),
+  //       ),
+  //       Text(label, textScaleFactor: 1.5),
+  //     ],
+  //   );
+  // }
+
+  Widget circleCard(Thing thing, String label) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          margin: EdgeInsets.all(10),
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(image: NetworkImage(url), fit: BoxFit.fill),
-          ),
-        ),
+        ThingCard(thing: thing),
         Text(label, textScaleFactor: 1.5),
       ],
     );

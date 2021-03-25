@@ -3,36 +3,39 @@ import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/utils/size_config.dart';
 import 'package:rhizome_gui/widgets/moveable_thing.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class CenterThingScreen extends StatefulWidget {
-  GlobalKey<NavigatorState> globalKey;
-  final List<MoveableThing> moveableThing;
-  final List<ThingContainer> list;
-  List<Thing> tags;
-  List<Thing> targets;
+  final Thing thing;
 
-  CenterThingScreen({Key key, this.globalKey, this.moveableThing, this.list})
-      : super(key: key);
+  CenterThingScreen({Key key, this.thing}) : super(key: key);
 
   _CenterThingScreen createState() => _CenterThingScreen();
 }
 
 class _CenterThingScreen extends State<CenterThingScreen> {
-  String velocity = "velocity";
-  String scale = "scale";
-  TransformationController controller = TransformationController();
-
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    final Rhizome rhizome = RhizomeManager.getInstance();
-    final moabImage = Image.asset('assets/images/moab.jpg');
-    final moab = rhizome.store(moabImage);
-
     return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Expanded(child: moabImage),
+      Expanded(
+        child: InteractiveViewer(
+          panEnabled: true,
+          boundaryMargin: EdgeInsets.all(double.infinity),
+          minScale: 0.1,
+          maxScale: 4,
+          // onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
+          //   setState(() {
+          //     scale = updateDetails.scale.toString();
+          //     if (updateDetails.scale < 0.8) {
+          //       _zoomedOut(true);
+          //     }
+          //   });
+          // },
+          child: ThingCard(thing: widget.thing),
+        ),
+      )
     ]));
   }
 }

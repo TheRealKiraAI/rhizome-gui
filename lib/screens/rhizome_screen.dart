@@ -16,52 +16,26 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
-  bool isZoom = false;
+  bool visibilityTag = false;
+
+  void _zoomedOut(bool visibility) {
+    setState(() {
+      visibilityTag = visibility;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final moabThing = widget.rhizome.store('Moab Thing');
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Rhizome'),
-        ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: ThingWorld(),
-        ),
-        floatingActionButton: _addButton(),
-        bottomNavigationBar: _bottomNavigationBar());
-  }
-
-  Widget _addButton() {
-    return FloatingActionButton(
-      onPressed: () => _displayCreateInformationScreen(context),
-      child: Icon(Icons.add),
-      backgroundColor: Colors.purple,
-    );
-  }
-
-  _displayCreateInformationScreen(BuildContext context) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => CreateInformationScreen()),
-    );
-
-    setState(() {});
-  }
-
-  Widget _bottomNavigationBar() {
-    return BottomAppBar(
-      color: Colors.grey[300],
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
+      appBar: AppBar(
+        title: Text('Rhizome'),
+      ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: visibilityTag ? ThingWorld(thing: moabThing) : CenterThingScreen(thing: moabThing),
       ),
     );
   }
