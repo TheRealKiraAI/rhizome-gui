@@ -16,7 +16,7 @@ class RhizomeScreen extends StatefulWidget {
 class _RhizomeScreenState extends State<RhizomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final moabThing = widget.rhizome.store('Moab Thing');
+    final moabThing = widget.rhizome.seek('Moab');
 
     return Scaffold(
       appBar: AppBar(
