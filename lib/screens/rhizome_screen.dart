@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
-import 'package:rhizome_gui/widgets/center_thing_screen.dart';
-import 'package:rhizome_gui/widgets/thing_world.dart';
+import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
   GlobalKey<NavigatorState> globalKey;
@@ -23,10 +22,8 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       appBar: AppBar(
         title: Text('Rhizome'),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: CenterThingScreen(thing: moabThing),
+      body: Center(
+        child: ThingCard(thing: moabThing),
       ),
     );
   }
