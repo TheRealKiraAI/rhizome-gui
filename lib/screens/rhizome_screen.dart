@@ -15,14 +15,6 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
-  bool visibilityTag = true;
-
-  void _zoomedOut(bool visibility) {
-    setState(() {
-      visibilityTag = visibility;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final moabThing = widget.rhizome.store('Moab Thing');
@@ -34,7 +26,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: visibilityTag ? ThingWorld(thing: moabThing) : CenterThingScreen(thing: moabThing),
+        child: CenterThingScreen(thing: moabThing),
       ),
     );
   }

@@ -21,14 +21,6 @@ class _CenterThingScreen extends State<CenterThingScreen> {
           boundaryMargin: EdgeInsets.all(double.infinity),
           minScale: 0.1,
           maxScale: 4,
-          // onInteractionUpdate: (ScaleUpdateDetails updateDetails) {
-          //   setState(() {
-          //     scale = updateDetails.scale.toString();
-          //     if (updateDetails.scale < 0.8) {
-          //       _zoomedOut(true);
-          //     }
-          //   });
-          // },
           child: ThingCard(thing: widget.thing),
         ),
       )
