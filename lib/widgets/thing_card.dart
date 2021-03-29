@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ThingCard extends StatefulWidget {
   final Thing thing;
