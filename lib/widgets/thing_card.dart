@@ -4,11 +4,11 @@ import 'package:rhizome/rhizome.dart';
 class ThingCard extends StatefulWidget {
   final Thing thing;
 
-  ThingCard(
-      {this.thing,
-      List<Thing> tags,
-      List<Thing> targets,
-      });
+  ThingCard({
+    this.thing,
+    List<Thing> tags,
+    List<Thing> targets,
+  });
 
   @override
   _ThingCardState createState() => _ThingCardState();
@@ -19,31 +19,20 @@ class _ThingCardState extends State<ThingCard> {
   Widget build(BuildContext context) {
     bool accepted = false;
 
-    return TextButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Colors.deepOrange),
-      ),
-      onPressed: () => {
-      //   Navigator.push(
-      //       context,
-      //       MaterialPageRoute(
-      //           builder: (context) => ContextualizeScreen(thing: widget.thing)))
-      },
-      child: LongPressDraggable<Thing>(
-        data: widget.thing,
+    return LongPressDraggable<dynamic>(
+      data: widget.thing,
+      child: _thingContainer(accepted),
+      childWhenDragging: Container(
+        width: 150,
+        height: 150,
+        color: Colors.blueGrey,
         child: _thingContainer(accepted),
-        childWhenDragging: Container(
-          width: 150,
-          height: 150,
-          color: Colors.blueGrey,
-          child: _thingContainer(accepted),
-        ),
-        feedback: Container(
-          width: 150,
-          height: 150,
-          color: Colors.blueGrey,
-          child: _thingContainer(accepted),
-        ),
+      ),
+      feedback: Container(
+        width: 150,
+        height: 150,
+        color: Colors.blueGrey,
+        child: _thingContainer(accepted),
       ),
     );
   }
@@ -52,9 +41,12 @@ class _ThingCardState extends State<ThingCard> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        DragTarget<Thing>(
-            onWillAccept: (Thing d) => true,
-            onAccept: (Thing d) {
+        // _defineImage()
+        //                 ? Image.asset(widget.thing.information)
+        //                 : Card(color: Colors.lightBlueAccent, child: Center(child: Text(widget.thing.information))),
+        DragTarget<dynamic>(
+            onWillAccept: (dynamic d) => true,
+            onAccept: (dynamic d) {
               widget.thing.tagWith(d);
             },
             builder: (context, candidateData, rejectedData) {

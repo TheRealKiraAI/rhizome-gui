@@ -14,27 +14,35 @@ class RhizomeScreen extends StatefulWidget {
 }
 
 class _RhizomeScreenState extends State<RhizomeScreen> {
+  Image thingImage;
+  bool isImage = false;
+
+
+  bool _defineImage(Thing thing) {
+    if (thing.information.contains('asset')) {
+      setState(() {
+        isImage = true;
+      });
+    } else {
+      setState(() {
+        isImage = false;
+      });
+    }
+    return isImage;
+  }
   @override
   Widget build(BuildContext context) {
-    final moabThing = widget.rhizome.seek('assets/images/moab.jpg');
-    Image thingImage;
-    bool isImage = false;
-
-    if (moabThing.information.contains('asset')) {
-      thingImage = Image.asset(moabThing.toString());
-      isImage = true;
-    } else {
-      isImage = false;
-    }
+    final moabText = widget.rhizome.seek('Moab');
+    final moabImage = widget.rhizome.seek('assets/images/moab.jpg');
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Rhizome'),
       ),
       body: Center(
-        child: isImage ? Image.asset(moabThing.information) : ThingCard(thing: moabThing),
+        child: _defineImage(moabImage) ? Image.asset(moabImage.information) : ThingCard(thing: moabImage),
       ),
-      floatingActionButton: _addButton(moabThing),
+      floatingActionButton: _addButton(moabImage),
     );
   }
 
