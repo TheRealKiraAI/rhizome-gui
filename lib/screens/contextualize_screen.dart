@@ -61,8 +61,6 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget circleCard(Thing thing, String label) {
     return Center(
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ThingCard(thing: thing),
           Text(label, textScaleFactor: 1.5),
