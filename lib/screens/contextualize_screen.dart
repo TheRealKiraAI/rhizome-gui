@@ -26,8 +26,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final Rhizome rhizome = RhizomeManager.getInstance();
-    final joe = rhizome.store('Joe');
-    final zion = rhizome.store('Zion');
+    final joe = rhizome.store('assets/images/joe.jpeg');
+    final zion = rhizome.store('assets/images/beautahful.jpeg');
 
     return Scaffold(
       body: Center(
@@ -63,9 +63,22 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget sideColumnCard(Thing thing, String label) {
     return Center(
       child: Column(children: [
-        ThingCard(thing: thing),
+        Container(
+          margin: EdgeInsets.all(10),
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: AssetImage(thing.information),
+              fit: BoxFit.fill
+            ),
+          ),
+        ),
         Text(label, textScaleFactor: 1.5),
-      ]),
+        ],
+      ),
+
     );
   }
 

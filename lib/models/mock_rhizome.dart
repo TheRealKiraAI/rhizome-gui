@@ -4,6 +4,7 @@ import 'package:rhizome/rhizome.dart';
 Rhizome mockRhizome() {
   final rhizome = Rhizome();
 
+  // tags and targets
   final moabImage = rhizome.store('assets/images/moab.jpg');
   final moabText = rhizome.store('Moab');
   final utah = rhizome.store('Utah');
