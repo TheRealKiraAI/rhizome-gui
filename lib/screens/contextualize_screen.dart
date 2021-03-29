@@ -7,10 +7,11 @@ import 'package:rhizome_gui/widgets/thing_card.dart';
 class ContextualizeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
   final Thing thing;
+  final bool image;
   List<Thing> tags;
   List<Thing> targets;
 
-  ContextualizeScreen({Key key, this.thing}) : super(key: key) {
+  ContextualizeScreen({Key key, this.thing, this.image}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
   }
@@ -33,34 +34,26 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center, 
-            children: [
-              Padding(
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ sideColumnCard(zion, "Zion") ]
-                )
-              ),
-              Padding(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [sideColumnCard(zion, "Zion")])),
+            Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ 
-                    sideRowCard(widget.tags),
-                    centerCard(rhizome, widget.thing),
-                    sideRowCard(widget.targets),
-                  ]
-                )
-              ),
-              Padding(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      sideRowCard(widget.tags),
+                      widget.image ? centerCardImage(rhizome, widget.thing) : centerCard(rhizome, widget.thing),
+                      sideRowCard(widget.targets),
+                    ])),
+            Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ sideColumnCard(joe, "Joe") ]
-                )
-              ),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [sideColumnCard(joe, "Joe")])),
           ]),
         ),
       ),
@@ -69,31 +62,37 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
 
   Widget sideColumnCard(Thing thing, String label) {
     return Center(
-      child: Column(
-        children: [
-          ThingCard(thing: thing),
-          Text(label, textScaleFactor: 1.5),
-        ]
-      ),
+      child: Column(children: [
+        ThingCard(thing: thing),
+        Text(label, textScaleFactor: 1.5),
+      ]),
     );
   }
 
   Widget sideRowCard(List<Thing> things) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: things.map((thing) => ThingCard(thing: thing)).toList()
-      ),
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: things.map((thing) => ThingCard(thing: thing)).toList()),
     );
   }
 
   Widget centerCard(Rhizome rhizome, dynamic centerThing) {
-    final moabThing = rhizome.seek('Moab');
+    final moabThing = rhizome.seek(widget.thing.information);
+
+    return Container(
+        height: SizeConfig.blockSizeVertical * 50,
+        width: SizeConfig.blockSizeHorizontal * 30,
+        child: ThingCard(thing: moabThing));
+  }
+
+  Widget centerCardImage(Rhizome rhizome, dynamic centerThing) {
+    final moabThing = rhizome.seek(widget.thing.information);
 
     return Container(
       height: SizeConfig.blockSizeVertical * 50,
       width: SizeConfig.blockSizeHorizontal * 30,
-      child: ThingCard(thing: moabThing)
+      child: Image.asset(centerThing.information)
     );
   }
 }

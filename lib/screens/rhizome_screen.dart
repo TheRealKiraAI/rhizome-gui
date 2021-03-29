@@ -17,7 +17,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   Image thingImage;
   bool isImage = false;
 
-
   bool _defineImage(Thing thing) {
     if (thing.information.contains('asset')) {
       setState(() {
@@ -30,29 +29,33 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
     }
     return isImage;
   }
+
   @override
   Widget build(BuildContext context) {
     final moabText = widget.rhizome.seek('Moab');
     final moabImage = widget.rhizome.seek('assets/images/moab.jpg');
+    bool isImage = _defineImage(moabImage);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Rhizome'),
       ),
       body: Center(
-        child: _defineImage(moabImage) ? Image.asset(moabImage.information) : ThingCard(thing: moabImage),
+        child: isImage
+            ? Image.asset(moabImage.information)
+            : ThingCard(thing: moabImage),
       ),
-      floatingActionButton: _addButton(moabImage),
+      floatingActionButton: _addButton(moabImage, isImage),
     );
   }
 
-  Widget _addButton(Thing thing) {
+  Widget _addButton(Thing thing, bool isImage) {
     return FloatingActionButton(
       onPressed: () => {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ContextualizeScreen(thing: thing)))
+                builder: (context) => ContextualizeScreen(thing: thing, image: isImage)))
       },
       child: Icon(Icons.add),
       backgroundColor: Colors.purple,
