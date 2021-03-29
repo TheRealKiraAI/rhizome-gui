@@ -28,13 +28,30 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            // places
-            Column(children: [circleCard(zion, "Zion")]),
-            // focus Thing
-            Column(children: [centerCard(rhizome, widget.thing)]),
-            // people
-            Column(children: [circleCard(joe, "Joe")]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ circleCard(zion, "Zion") ]
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ centerCard(rhizome, widget.thing) ]
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ circleCard(joe, "Joe") ]
+                )
+              ),
           ]),
         ),
       ),
@@ -44,12 +61,13 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget circleCard(Thing thing, String label) {
     return Center(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ThingCard(thing: thing),
-            Text(label, textScaleFactor: 1.5),
-          ]),
+        // mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ThingCard(thing: thing),
+          Text(label, textScaleFactor: 1.5),
+        ]
+      ),
     );
   }
 
