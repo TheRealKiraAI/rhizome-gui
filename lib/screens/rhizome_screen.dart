@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
+import 'package:rhizome_gui/screens/contextualize_screen.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
@@ -24,6 +25,20 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       body: Center(
         child: ThingCard(thing: moabThing),
       ),
+      floatingActionButton: _addButton(moabThing),
+    );
+  }
+
+  Widget _addButton(Thing thing) {
+    return FloatingActionButton(
+      onPressed: () => {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ContextualizeScreen(thing: thing)))
+      },
+      child: Icon(Icons.add),
+      backgroundColor: Colors.purple,
     );
   }
 }
