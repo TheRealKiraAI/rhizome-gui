@@ -6,9 +6,15 @@ import 'package:rhizome_gui/widgets/thing_card.dart';
 import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ContextualizeScreen extends StatefulWidget {
+  final Rhizome rhizome = RhizomeManager.getInstance();
   final Thing thing;
+  List<Thing> tags;
+  List<Thing> targets;
 
-  ContextualizeScreen({Key key, this.thing}) : super(key: key);
+  ContextualizeScreen({Key key, this.thing}) : super(key: key) {
+    tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
+    targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
+  }
 
   _ContextualizeScreenState createState() => _ContextualizeScreenState();
 }
@@ -35,21 +41,25 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                 padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ circleCard(zion, "Zion") ]
+                  children: [ sideColumnCard(zion, "Zion") ]
                 )
               ),
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ centerCard(rhizome, widget.thing) ]
+                  children: [ 
+                    sideRowCard(widget.tags),
+                    centerCard(rhizome, widget.thing),
+                    sideRowCard(widget.targets),
+                  ]
                 )
               ),
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [ circleCard(joe, "Joe") ]
+                  children: [ sideColumnCard(joe, "Joe") ]
                 )
               ),
           ]),
@@ -58,7 +68,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     );
   }
 
-  Widget circleCard(Thing thing, String label) {
+  Widget sideColumnCard(Thing thing, String label) {
     return Center(
       child: Column(
         children: [
@@ -69,11 +79,22 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     );
   }
 
-  Widget centerCard(Rhizome rhizome, dynamic centerThing) {
+  Widget sideRowCard(List<Thing> things) {
     return Container(
-      height: SizeConfig.blockSizeVertical * 70,
-      width: SizeConfig.blockSizeHorizontal * 40,
-      child: ThingContainer(thing: rhizome.seek('Moab')),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: things.map((thing) => ThingCard(thing: thing)).toList()
+      ),
+    );
+  }
+
+  Widget centerCard(Rhizome rhizome, dynamic centerThing) {
+    final moabThing = rhizome.seek('Moab');
+
+    return Container(
+      height: SizeConfig.blockSizeVertical * 50,
+      width: SizeConfig.blockSizeHorizontal * 30,
+      child: ThingCard(thing: moabThing)
     );
   }
 }
