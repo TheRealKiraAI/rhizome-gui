@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
-import 'package:rhizome_gui/screens/contextualize_screen.dart';
 
 class ThingCard extends StatefulWidget {
   final Thing thing;
@@ -24,12 +23,12 @@ class _ThingCardState extends State<ThingCard> {
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(Colors.deepOrange),
       ),
-      // onPressed: () => {
+      onPressed: () => {
       //   Navigator.push(
       //       context,
       //       MaterialPageRoute(
       //           builder: (context) => ContextualizeScreen(thing: widget.thing)))
-      // },
+      },
       child: LongPressDraggable<Thing>(
         data: widget.thing,
         child: _thingContainer(accepted),

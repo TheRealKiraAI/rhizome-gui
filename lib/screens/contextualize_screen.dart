@@ -3,7 +3,6 @@ import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/utils/size_config.dart';
 import 'package:rhizome_gui/widgets/thing_card.dart';
-import 'package:rhizome_gui/widgets/thing_container.dart';
 
 class ContextualizeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
