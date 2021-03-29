@@ -68,7 +68,16 @@ class _ThingCardState extends State<ThingCard> {
             },
             builder: (context, candidateData, rejectedData) {
               return image
-                  ? Container(child: Image.asset(widget.thing.information))
+                  ? Container(
+                    width: 150,
+                    height: 150,
+                      decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage(widget.thing.information), fit: BoxFit.fill),
+                      )
+                  )
+                      //child: Image.asset(widget.thing.information))
                   : Container(
                       width: 150,
                       height: 150,

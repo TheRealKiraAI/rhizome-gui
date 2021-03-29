@@ -43,7 +43,10 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, 
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
             Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
@@ -76,13 +79,13 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         children: [
           Container(
             margin: EdgeInsets.all(10),
-            width: 100,
-            height: 100,
-            //child: ThingCard(thing: thing),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage(thing.information), fit: BoxFit.fill),
+            width: 150,
+            height: 150,
+            child: ThingCard(
+              thing: thing,
+              onDragged: () {
+                _renderDraggables();
+              },
             ),
           ),
           Text(label, textScaleFactor: 1.5),
