@@ -17,16 +17,22 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
   @override
   Widget build(BuildContext context) {
     final moabThing = widget.rhizome.seek('assets/images/moab.jpg');
+    Image thingImage;
+    bool isImage = false;
 
-    print(moabThing);
-    print(moabThing.information);
+    if (moabThing.information.contains('asset')) {
+      thingImage = Image.asset(moabThing.toString());
+      isImage = true;
+    } else {
+      isImage = false;
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Rhizome'),
       ),
       body: Center(
-        child: ThingCard(thing: moabThing),
+        child: isImage ? Image.asset(moabThing.information) : ThingCard(thing: moabThing),
       ),
       floatingActionButton: _addButton(moabThing),
     );
