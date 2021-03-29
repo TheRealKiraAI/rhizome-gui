@@ -77,7 +77,6 @@ class _ThingCardState extends State<ThingCard> {
                           image: AssetImage(widget.thing.information), fit: BoxFit.fill),
                       )
                   )
-                      //child: Image.asset(widget.thing.information))
                   : Container(
                       width: 150,
                       height: 150,

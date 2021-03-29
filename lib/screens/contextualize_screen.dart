@@ -43,30 +43,30 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center, 
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-            Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [sideColumnCard(zion, "Zion")])),
+          child: Row(children: [
+            Expanded(
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [sideColumnCard(zion, "Zion")])),
+            ),
             Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       sideRowCard(widget.tags),
-                      //widget.image ? centerCardImage(rhizome, widget.thing) : centerCard(rhizome, widget.thing),
-                      centerCardImage(rhizome, widget.thing),
+                      centerCardImage(widget.thing),
                       sideRowCard(widget.targets),
                     ])),
-            Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [sideColumnCard(joe, "Joe")])),
+            Expanded(
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [sideColumnCard(joe, "Joe")])),
+            ),
           ]),
         ),
       ),
@@ -97,7 +97,6 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget sideRowCard(List<Thing> things) {
     return Container(
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: things
               .map((thing) => ThingCard(
                   thing: thing,
@@ -108,21 +107,14 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     );
   }
 
-  Widget centerCard(Rhizome rhizome, dynamic centerThing) {
-    final moabThing = rhizome.seek(widget.thing.information);
-
+  Widget centerCardImage(dynamic centerThing) {
     return Container(
-        height: SizeConfig.blockSizeVertical * 50,
-        width: SizeConfig.blockSizeHorizontal * 30,
-        child: ThingCard(thing: moabThing));
-  }
-
-  Widget centerCardImage(Rhizome rhizome, dynamic centerThing) {
-    final moabThing = rhizome.seek(widget.thing.information);
-
-    return Container(
-        height: SizeConfig.blockSizeVertical * 50,
-        width: SizeConfig.blockSizeHorizontal * 30,
-        child: ThingCard(thing: centerThing));
+      child: ThingCard(
+        thing: centerThing,
+        onDragged: () {
+          _renderDraggables();
+        }
+      )
+    );
   }
 }
