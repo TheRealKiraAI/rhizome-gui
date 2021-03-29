@@ -7,11 +7,10 @@ import 'package:rhizome_gui/widgets/thing_card.dart';
 class ContextualizeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
   final Thing thing;
-  final bool image;
   List<Thing> tags;
   List<Thing> targets;
 
-  ContextualizeScreen({Key key, this.thing, this.image}) : super(key: key) {
+  ContextualizeScreen({Key key, this.thing}) : super(key: key) {
     tags = thing.tags.map((uri) => rhizome.retrieve(uri)).toList();
     targets = thing.targets.map((uri) => rhizome.retrieve(uri)).toList();
   }
@@ -22,12 +21,22 @@ class ContextualizeScreen extends StatefulWidget {
 class _ContextualizeScreenState extends State<ContextualizeScreen> {
   TransformationController controller = TransformationController();
 
+  void Function() _renderDraggables() {
+    setState(() {
+      widget.tags =
+          widget.thing.tags.map((uri) => widget.rhizome.retrieve(uri)).toList();
+      widget.targets = widget.thing.targets
+          .map((uri) => widget.rhizome.retrieve(uri))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final Rhizome rhizome = RhizomeManager.getInstance();
-    final joe = rhizome.store('assets/images/joe.jpeg');
-    final zion = rhizome.store('assets/images/beautahful.jpeg');
+    final joe = rhizome.seek('assets/images/joe.jpeg');
+    final zion = rhizome.seek('assets/images/beautahful.jpeg');
 
     return Scaffold(
       body: Center(
@@ -46,7 +55,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       sideRowCard(widget.tags),
-                      widget.image ? centerCardImage(rhizome, widget.thing) : centerCard(rhizome, widget.thing),
+                      //widget.image ? centerCardImage(rhizome, widget.thing) : centerCard(rhizome, widget.thing),
+                      centerCardImage(rhizome, widget.thing),
                       sideRowCard(widget.targets),
                     ])),
             Padding(
@@ -62,23 +72,22 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
 
   Widget sideColumnCard(Thing thing, String label) {
     return Center(
-      child: Column(children: [
-        Container(
-          margin: EdgeInsets.all(10),
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(thing.information),
-              fit: BoxFit.fill
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(10),
+            width: 100,
+            height: 100,
+            //child: ThingCard(thing: thing),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage(thing.information), fit: BoxFit.fill),
             ),
           ),
-        ),
-        Text(label, textScaleFactor: 1.5),
+          Text(label, textScaleFactor: 1.5),
         ],
       ),
-
     );
   }
 
@@ -86,7 +95,13 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     return Container(
       child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: things.map((thing) => ThingCard(thing: thing)).toList()),
+          children: things
+              .map((thing) => ThingCard(
+                  thing: thing,
+                  onDragged: () {
+                    _renderDraggables();
+                  }))
+              .toList()),
     );
   }
 
@@ -103,9 +118,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     final moabThing = rhizome.seek(widget.thing.information);
 
     return Container(
-      height: SizeConfig.blockSizeVertical * 50,
-      width: SizeConfig.blockSizeHorizontal * 30,
-      child: Image.asset(centerThing.information)
-    );
+        height: SizeConfig.blockSizeVertical * 50,
+        width: SizeConfig.blockSizeHorizontal * 30,
+        child: ThingCard(thing: centerThing));
   }
 }

@@ -11,10 +11,15 @@ Rhizome mockRhizome() {
   final biking = rhizome.store('Mountain Biking');
   final arches = rhizome.store('Arches National Park');
 
+  // people and places
+  final joe = rhizome.store('assets/images/joe.jpeg');
+  final zion = rhizome.store('assets/images/beautahful.jpeg');
+
   moabImage.tagWith(utah);
   moabImage.tagWith(biking);
   moabText.tagWith(arches);
   utah.tagWith(moabImage);
+  arches.tagWith(moabImage);
   biking.tagWith(arches);
   biking.tagWith(utah);
   utah.tagWith(biking);
