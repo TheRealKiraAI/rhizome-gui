@@ -23,11 +23,18 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         title: Text('Rhizome'),
       ),
       body: Center(
+        child: GestureDetector(
+          onScaleUpdate: (details) {
+          setState(() {
+            print('Pinch detected: ' + details.scale.toString());
+          });
+        },
         child: Image(
           image: AssetImage('assets/images/moab.jpg'),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.fill,
+          ),
         ),
       ),
       //floatingActionButton: _addButton(moabImage),
