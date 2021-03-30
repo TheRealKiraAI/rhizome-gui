@@ -16,7 +16,6 @@ class RhizomeScreen extends StatefulWidget {
 class _RhizomeScreenState extends State<RhizomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final moabText = widget.rhizome.seek('Moab');
     final moabImage = widget.rhizome.seek('assets/images/moab.jpg');
 
     return Scaffold(
@@ -24,9 +23,14 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         title: Text('Rhizome'),
       ),
       body: Center(
-        child: ThingCard(thing: moabImage),
+        child: Image(
+          image: AssetImage('assets/images/moab.jpg'),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          fit: BoxFit.fill,
+        ),
       ),
-      floatingActionButton: _addButton(moabImage),
+      //floatingActionButton: _addButton(moabImage),
     );
   }
 
