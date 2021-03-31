@@ -79,7 +79,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(85),
             width: 150,
             height: 150,
             child: ThingCard(
@@ -108,15 +108,19 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
 
   Widget sideRowCard(List<Thing> things) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: things
-            .map((thing) => ThingCard(
-                thing: thing,
-                onDragged: () {
-                  _renderDraggables();
-                }))
-            .toList()),
+      margin: EdgeInsets.symmetric(vertical: 20.0),
+      height: 200.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children:  
+          things
+          .map((thing) => ThingCard(
+              thing: thing,
+              onDragged: () {
+                _renderDraggables();
+              }))
+          .toList()
+      ),
     );
   }
 
