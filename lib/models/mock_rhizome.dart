@@ -13,7 +13,9 @@ Rhizome mockRhizome() {
 
   // people and places
   final joe = rhizome.store('assets/images/joe.jpeg');
+  final sara = rhizome.store('assets/images/sara.jpeg');
   final zion = rhizome.store('assets/images/beautahful.jpeg');
+  final archesImage = rhizome.store('assets/images/arches.jpeg');
 
   moabImage.tagWith(utah);
   moabImage.tagWith(biking);
@@ -24,6 +26,9 @@ Rhizome mockRhizome() {
   biking.tagWith(utah);
   utah.tagWith(biking);
   utah.tagWith(moabImage);
+
+  joe.tagWith(zion);
+  zion.tagWith(joe);
 
   return rhizome;
 }

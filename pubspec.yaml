@@ -51,6 +51,8 @@ flutter:
     - assets/images/moab.jpg
     - assets/beautahful.jpeg
     - assets/joe.jpeg
+    - assets/arches.jpeg
+    - assets/sara.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

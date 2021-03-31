@@ -21,6 +21,7 @@ class ContextualizeScreen extends StatefulWidget {
 class _ContextualizeScreenState extends State<ContextualizeScreen> {
   TransformationController controller = TransformationController();
 
+  // ignore: missing_return
   void Function() _renderDraggables() {
     setState(() {
       widget.tags =
@@ -36,8 +37,10 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     SizeConfig().init(context);
     final Rhizome rhizome = RhizomeManager.getInstance();
     final joe = rhizome.seek('assets/images/joe.jpeg');
+    final sara = rhizome.seek('assets/images/sara.jpeg');
+    
+    final arches = rhizome.seek('assets/images/arches.jpeg');
     final zion = rhizome.seek('assets/images/beautahful.jpeg');
-    final test = rhizome.seek('assets/images/beautahful.jpeg');
 
     return Scaffold(
       body: Center(
@@ -48,38 +51,33 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // tags
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Container(
-                  child: sideRowCard(widget.tags)
-                ),
-              ), 
+              sideRowCard(widget.tags),
+
               Row(
+                // people, center, places
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [ 
-                sideColumnCard(zion, test, "Zion"),
-                centerCardImage(widget.thing),
-                sideColumnCard(joe, test, "Joe"),
-              ]),
-              // targets
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Container(
-                  child: sideRowCard(widget.targets)
-                ),
+                  sideColumnCard(zion, "Zion", arches, "Arches"),
+                  centerCardImage(widget.thing),
+                  sideColumnCard(joe, "Joe", sara, "Sara"),
+                ]
               ),
+
+              // targets
+              sideRowCard(widget.targets),
           ]),
         ),
       ),
     );
   }
 
-  Widget sideColumnCard(Thing thing, Thing thing2, String label) {
-    return Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
+  Widget sideColumnCard(Thing thing, String label, Thing thing2, String label2) {
+    return Padding(
+      padding: EdgeInsets.all(75),
+      child: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(85),
+            margin: EdgeInsets.all(10),
             width: 150,
             height: 150,
             child: ThingCard(
@@ -101,25 +99,29 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
               },
             ),
           ),
-          Text(label, textScaleFactor: 1.5),
+          Text(label2, textScaleFactor: 1.5),
         ],
+      ),
     );
   }
 
   Widget sideRowCard(List<Thing> things) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20.0),
-      height: 200.0,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children:  
-          things
-          .map((thing) => ThingCard(
-              thing: thing,
-              onDragged: () {
-                _renderDraggables();
-              }))
-          .toList()
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 20.0),
+        height: 200.0,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children:  
+            things
+            .map((thing) => ThingCard(
+                thing: thing,
+                onDragged: () {
+                  _renderDraggables();
+                }))
+            .toList()
+        ),
       ),
     );
   }
