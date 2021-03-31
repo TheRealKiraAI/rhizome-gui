@@ -37,7 +37,7 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           ),
         ),
       ),
-      //floatingActionButton: _addButton(moabImage),
+      floatingActionButton: _addButton(moabImage),
     );
   }
 

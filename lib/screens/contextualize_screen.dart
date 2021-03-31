@@ -37,45 +37,46 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     final Rhizome rhizome = RhizomeManager.getInstance();
     final joe = rhizome.seek('assets/images/joe.jpeg');
     final zion = rhizome.seek('assets/images/beautahful.jpeg');
+    final test = rhizome.seek('assets/images/beautahful.jpeg');
 
     return Scaffold(
       body: Center(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Row(children: [
-            Expanded(
-              child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [sideColumnCard(zion, "Zion")])),
-            ),
-            Padding(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // tags
+              Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      sideRowCard(widget.tags),
-                      centerCardImage(widget.thing),
-                      sideRowCard(widget.targets),
-                    ])),
-            Expanded(
-              child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [sideColumnCard(joe, "Joe")])),
-            ),
+                child: Container(
+                  child: sideRowCard(widget.tags)
+                ),
+              ), 
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ 
+                sideColumnCard(zion, test, "Zion"),
+                centerCardImage(widget.thing),
+                sideColumnCard(joe, test, "Joe"),
+              ]),
+              // targets
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Container(
+                  child: sideRowCard(widget.targets)
+                ),
+              ),
           ]),
         ),
       ),
     );
   }
 
-  Widget sideColumnCard(Thing thing, String label) {
-    return Center(
-      child: Column(
+  Widget sideColumnCard(Thing thing, Thing thing2, String label) {
+    return Column(
+      //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.all(10),
@@ -89,21 +90,33 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
             ),
           ),
           Text(label, textScaleFactor: 1.5),
+          Container(
+            margin: EdgeInsets.all(10),
+            width: 150,
+            height: 150,
+            child: ThingCard(
+              thing: thing2,
+              onDragged: () {
+                _renderDraggables();
+              },
+            ),
+          ),
+          Text(label, textScaleFactor: 1.5),
         ],
-      ),
     );
   }
 
   Widget sideRowCard(List<Thing> things) {
     return Container(
       child: Row(
-          children: things
-              .map((thing) => ThingCard(
-                  thing: thing,
-                  onDragged: () {
-                    _renderDraggables();
-                  }))
-              .toList()),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: things
+            .map((thing) => ThingCard(
+                thing: thing,
+                onDragged: () {
+                  _renderDraggables();
+                }))
+            .toList()),
     );
   }
 
