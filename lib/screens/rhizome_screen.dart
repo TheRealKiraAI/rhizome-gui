@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/screens/contextualize_screen.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
 
 class RhizomeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
@@ -25,15 +24,13 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
       body: Center(
         child: GestureDetector(
           onScaleUpdate: (details) {
-          setState(() {
             print('Pinch detected: ' + details.scale.toString());
-          });
-        },
-        child: Image(
-          image: AssetImage('assets/images/moab.jpg'),
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          fit: BoxFit.fill,
+          },
+          child: Image(
+            image: AssetImage('assets/images/moab.jpg'),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            fit: BoxFit.fill,
           ),
         ),
       ),
