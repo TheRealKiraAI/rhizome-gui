@@ -40,13 +40,16 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
               });
             }
           },
-          child: Image(
+          child: Hero(
+            tag: moabImage.information,
+            child: Image(
             image: AssetImage('assets/images/moab.jpg'),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             fit: BoxFit.fill,
           ),
         ),
+      ),
       ),
       floatingActionButton: _addButton(moabImage),
     );

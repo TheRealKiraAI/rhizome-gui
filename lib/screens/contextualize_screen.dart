@@ -128,12 +128,15 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
 
   Widget centerCardImage(dynamic centerThing) {
     return Container(
-      child: ThingCard(
+      child: Hero(
+        tag: centerThing.information,
+        child: ThingCard(
         thing: centerThing,
         onDragged: () {
           _renderDraggables();
         }
       )
+      ),
     );
   }
 }
