@@ -22,9 +22,23 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
         title: Text('Rhizome'),
       ),
       body: Center(
-        child: GestureDetector(
-          onScaleUpdate: (details) {
+        child: InteractiveViewer(
+          panEnabled: true,
+          boundaryMargin: EdgeInsets.all(double.infinity),
+          minScale: 0.1,
+          maxScale: 4,
+          onInteractionUpdate: (ScaleUpdateDetails details) {
             print('Pinch detected: ' + details.scale.toString());
+            if (details.scale <= 0.6) {
+              print('<= 0.8');
+              setState(() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ContextualizeScreen(thing: moabImage)));
+              });
+            }
           },
           child: Image(
             image: AssetImage('assets/images/moab.jpg'),
