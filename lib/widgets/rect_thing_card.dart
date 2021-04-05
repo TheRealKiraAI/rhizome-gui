@@ -28,15 +28,15 @@ class _RectThingCardState extends State<RectThingCard> {
       data: widget.thing,
       child: _thingContainer(accepted),
       childWhenDragging: Container(
-        width: SizeConfig.blockSizeHorizontal * 5,
-        height: SizeConfig.blockSizeVertical * 5,
+        height: SizeConfig.blockSizeVertical * 13,
+        width: SizeConfig.blockSizeHorizontal * 30,
         color: Colors.blueGrey,
         child: _thingContainer(accepted),
       ),
       onDragCompleted: widget.onDragged,
       feedback: Container(
-        width: SizeConfig.blockSizeHorizontal * 5,
-        height: SizeConfig.blockSizeVertical * 5,
+        height: SizeConfig.blockSizeVertical * 13,
+        width: SizeConfig.blockSizeHorizontal * 30,
         color: Colors.blueGrey,
         child: _thingContainer(accepted),
       ),
@@ -54,8 +54,8 @@ class _RectThingCardState extends State<RectThingCard> {
             },
             builder: (context, candidateData, rejectedData) {
               return Container(
-                  width: SizeConfig.blockSizeHorizontal * 5,
-                  height: SizeConfig.blockSizeVertical * 5,
+                  height: SizeConfig.blockSizeVertical * 13,
+                  width: SizeConfig.blockSizeHorizontal * 30,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     image: DecorationImage(

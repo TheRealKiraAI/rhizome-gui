@@ -45,15 +45,15 @@ class _BaseThingCardState extends State<BaseThingCard> {
       data: widget.thing,
       child: _thingContainer(accepted, image),
       childWhenDragging: Container(
+        height: SizeConfig.blockSizeVertical * 20,
         width: SizeConfig.blockSizeHorizontal * 25,
-        height: SizeConfig.blockSizeVertical * 25,
         color: Colors.blueGrey,
         child: _thingContainer(accepted, image),
       ),
       onDragCompleted: widget.onDragged,
       feedback: Container(
+        height: SizeConfig.blockSizeVertical * 20,
         width: SizeConfig.blockSizeHorizontal * 25,
-        height: SizeConfig.blockSizeVertical * 25,
         color: Colors.blueGrey,
         child: _thingContainer(accepted, image),
       ),
@@ -72,8 +72,8 @@ class _BaseThingCardState extends State<BaseThingCard> {
             builder: (context, candidateData, rejectedData) {
               return image
                   ? Container(
-                      width: SizeConfig.blockSizeHorizontal * 5,
-                      height: SizeConfig.blockSizeVertical * 5,
+                      height: SizeConfig.blockSizeVertical * 10,
+                      width: SizeConfig.blockSizeHorizontal * 15,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -81,8 +81,8 @@ class _BaseThingCardState extends State<BaseThingCard> {
                             fit: BoxFit.fill),
                       ))
                   : Container(
-                      height: SizeConfig.blockSizeVertical * 13,
-                      width: SizeConfig.blockSizeHorizontal * 30,
+                      height: SizeConfig.blockSizeVertical * 10,
+                      width: SizeConfig.blockSizeHorizontal * 15,
                       child: Card(
                         color: Colors.lightBlueAccent,
                         child: Center(

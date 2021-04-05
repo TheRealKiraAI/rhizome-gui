@@ -48,23 +48,22 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         child: Container(
           height: SizeConfig.screenHeight,
           width: SizeConfig.screenWidth,
-          color: Colors.purple,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // tags
-              sideRowCard(widget.tags),
+              Expanded(child: sideRowCard(widget.tags)),
               // people, center, places
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [ 
-                  Column(children: [ sideColumnCard(zion, "Zion"), sideColumnCard(arches, "Arches")]),
-                  centerCardImage(widget.thing),
-                  Column(children: [ sideColumnCard(joe, "Joe"), sideColumnCard(sara, "Sara") ])
+                  Expanded(child: Column(children: [ sideColumnCard(zion, "Zion"), sideColumnCard(arches, "Arches")])),
+                  Expanded(child: centerCardImage(widget.thing)),
+                  Expanded(child: Column(children: [ sideColumnCard(joe, "Joe"), sideColumnCard(sara, "Sara") ]))
                 ]
               ),
               // targets
-              sideRowCard(widget.targets),
+              Expanded(child: sideRowCard(widget.targets)),
           ]),
         ),
       ),
@@ -77,8 +76,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       child: Column(children: [
         Container(
             margin: EdgeInsets.all(10),
-            width: SizeConfig.blockSizeHorizontal * 5,
-            height: SizeConfig.blockSizeVertical * 5,
+            height: SizeConfig.blockSizeVertical * 10,
+            width: SizeConfig.blockSizeHorizontal * 15,
             child: BaseThingCard(
                 thing: thing,
                 onDragged: () {
@@ -86,7 +85,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                 },
               ),
           ),
-          Text(label, textScaleFactor: 1.5),
+          Text(label, textScaleFactor: 1.0),
       ]),
     );
   }
