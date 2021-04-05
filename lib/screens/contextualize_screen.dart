@@ -73,7 +73,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
   Widget sideColumnCard(Thing thing, String label) {
     return Padding(
       padding: EdgeInsets.all(35),
-      child: Container(
+      child: Column(children: [
+        Container(
             margin: EdgeInsets.all(10),
             width: 150,
             height: 150,
@@ -84,7 +85,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                 },
               ),
           ),
-          //Text(label, textScaleFactor: 1.5),
+          Text(label, textScaleFactor: 1.5),
+      ]),
     );
   }
 
