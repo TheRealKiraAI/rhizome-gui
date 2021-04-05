@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import 'package:rhizome_gui/utils/size_config.dart';
 
 class BaseThingCard extends StatefulWidget {
   final Thing thing;
@@ -44,15 +45,15 @@ class _BaseThingCardState extends State<BaseThingCard> {
       data: widget.thing,
       child: _thingContainer(accepted, image),
       childWhenDragging: Container(
-        width: 150,
-        height: 150,
+        width: SizeConfig.blockSizeHorizontal * 25,
+        height: SizeConfig.blockSizeVertical * 25,
         color: Colors.blueGrey,
         child: _thingContainer(accepted, image),
       ),
       onDragCompleted: widget.onDragged,
       feedback: Container(
-        width: 150,
-        height: 150,
+        width: SizeConfig.blockSizeHorizontal * 25,
+        height: SizeConfig.blockSizeVertical * 25,
         color: Colors.blueGrey,
         child: _thingContainer(accepted, image),
       ),
@@ -71,8 +72,8 @@ class _BaseThingCardState extends State<BaseThingCard> {
             builder: (context, candidateData, rejectedData) {
               return image
                   ? Container(
-                      width: 150,
-                      height: 150,
+                      width: SizeConfig.blockSizeHorizontal * 5,
+                      height: SizeConfig.blockSizeVertical * 5,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
@@ -80,12 +81,12 @@ class _BaseThingCardState extends State<BaseThingCard> {
                             fit: BoxFit.fill),
                       ))
                   : Container(
-                      width: 150,
-                      height: 150,
+                      height: SizeConfig.blockSizeVertical * 13,
+                      width: SizeConfig.blockSizeHorizontal * 30,
                       child: Card(
                         color: Colors.lightBlueAccent,
                         child: Center(
-                          child: Text(widget.thing.information),
+                          child: Text(widget.thing.information, textAlign: TextAlign.center),
                         ),
                       ),
                     );

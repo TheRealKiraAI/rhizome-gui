@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
+import 'package:rhizome_gui/utils/size_config.dart';
 
 class RectThingCard extends StatefulWidget {
   final Thing thing;
@@ -19,47 +20,30 @@ class RectThingCard extends StatefulWidget {
 }
 
 class _RectThingCardState extends State<RectThingCard> {
-  Image thingImage;
-  bool isImage = false;
-
-  bool _defineImage(Thing thing) {
-    if (thing.information.contains('assets')) {
-      setState(() {
-        isImage = true;
-      });
-    } else {
-      setState(() {
-        isImage = false;
-      });
-    }
-    return isImage;
-  }
-
   @override
   Widget build(BuildContext context) {
     bool accepted = false;
-    bool image = _defineImage(widget.thing);
 
     return LongPressDraggable<dynamic>(
       data: widget.thing,
-      child: _thingContainer(accepted, image),
+      child: _thingContainer(accepted),
       childWhenDragging: Container(
-        width: 150,
-        height: 150,
+        width: SizeConfig.blockSizeHorizontal * 5,
+        height: SizeConfig.blockSizeVertical * 5,
         color: Colors.blueGrey,
-        child: _thingContainer(accepted, image),
+        child: _thingContainer(accepted),
       ),
       onDragCompleted: widget.onDragged,
       feedback: Container(
-        width: 150,
-        height: 150,
+        width: SizeConfig.blockSizeHorizontal * 5,
+        height: SizeConfig.blockSizeVertical * 5,
         color: Colors.blueGrey,
-        child: _thingContainer(accepted, image),
+        child: _thingContainer(accepted),
       ),
     );
   }
 
-  Widget _thingContainer(bool accepted, bool image) {
+  Widget _thingContainer(bool accepted) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -69,26 +53,15 @@ class _RectThingCardState extends State<RectThingCard> {
               widget.thing.tagWith(d);
             },
             builder: (context, candidateData, rejectedData) {
-              return image
-                  ? Container(
-                      width: 200,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        image: DecorationImage(
-                            image: AssetImage(widget.thing.information),
-                            fit: BoxFit.fill),
-                      ))
-                  : Container(
-                      width: 150,
-                      height: 150,
-                      child: Card(
-                        color: Colors.lightBlueAccent,
-                        child: Center(
-                          child: Text(widget.thing.information),
-                        ),
-                      ),
-                    );
+              return Container(
+                  width: SizeConfig.blockSizeHorizontal * 5,
+                  height: SizeConfig.blockSizeVertical * 5,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    image: DecorationImage(
+                        image: AssetImage(widget.thing.information),
+                        fit: BoxFit.fill),
+                  ));
             }),
       ],
     );

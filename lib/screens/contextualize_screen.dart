@@ -46,8 +46,9 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     return Scaffold(
       body: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.screenWidth,
+          color: Colors.purple,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,8 +77,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       child: Column(children: [
         Container(
             margin: EdgeInsets.all(10),
-            width: 150,
-            height: 150,
+            width: SizeConfig.blockSizeHorizontal * 5,
+            height: SizeConfig.blockSizeVertical * 5,
             child: BaseThingCard(
                 thing: thing,
                 onDragged: () {
@@ -95,8 +96,8 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       padding: EdgeInsets.all(10.0),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: 200.0,
-        width: MediaQuery.of(context).size.width,
+        height: SizeConfig.blockSizeVertical * 15,
+        width: SizeConfig.blockSizeHorizontal * 80,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children:  
