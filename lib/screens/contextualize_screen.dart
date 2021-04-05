@@ -52,7 +52,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // tags
-              Row(children: [ sideRowCard(widget.tags) ]),
+              sideRowCard(widget.tags),
               // people, center, places
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +63,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                 ]
               ),
               // targets
-              Row(children: [ sideRowCard(widget.targets) ]),
+              sideRowCard(widget.targets),
           ]),
         ),
       ),
@@ -96,25 +96,18 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
         height: 200.0,
-        child: Row(children: things
+        width: MediaQuery.of(context).size.width,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children:  
+            things
             .map((thing) => BaseThingCard(
                 thing: thing,
                 onDragged: () {
                   _renderDraggables();
                 }))
             .toList()
-        // child: ListView(
-        //   scrollDirection: Axis.horizontal,
-        //   children:  
-            // things
-            // .map((thing) => ThingCard(
-            //     thing: thing,
-            //     onDragged: () {
-            //       _renderDraggables();
-            //     }))
-            // .toList()
-        //),
-      ),
+        ),
       ),
     );
   }
