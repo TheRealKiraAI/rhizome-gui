@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 import 'package:rhizome_gui/models/rhizome_manager.dart';
 import 'package:rhizome_gui/utils/size_config.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:rhizome_gui/widgets/base_thing_card.dart';
+import 'package:rhizome_gui/widgets/rect_thing_card.dart';
 
 class ContextualizeScreen extends StatefulWidget {
   final Rhizome rhizome = RhizomeManager.getInstance();
@@ -76,7 +77,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
             margin: EdgeInsets.all(10),
             width: 150,
             height: 150,
-            child: ThingCard(
+            child: BaseThingCard(
                 thing: thing,
                 onDragged: () {
                   _renderDraggables();
@@ -94,7 +95,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
         margin: EdgeInsets.symmetric(vertical: 20.0),
         height: 200.0,
         child: Row(children: things
-            .map((thing) => ThingCard(
+            .map((thing) => BaseThingCard(
                 thing: thing,
                 onDragged: () {
                   _renderDraggables();
@@ -120,23 +121,13 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     return Container(
       child: Hero(
         tag: centerThing.information,
-        child: ThingCard(
-        thing: centerThing,
-        onDragged: () {
-          _renderDraggables();
-        }
-      )
+        child: RectThingCard(
+          thing: centerThing,
+          onDragged: () {
+            _renderDraggables();
+          }
+        )
       ),
     );
-
-    // Container(
-    //                 width: 150,
-    //                 height: 150,
-    //                   decoration: BoxDecoration(
-    //                   shape: BoxShape.circle,
-    //                   image: DecorationImage(
-    //                       image: AssetImage(widget.thing.information), fit: BoxFit.fill),
-    //                   )
-    //               )
   }
 }

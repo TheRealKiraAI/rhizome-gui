@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:rhizome/rhizome.dart';
 
-class ThingCard extends StatefulWidget {
+class RectThingCard extends StatefulWidget {
   final Thing thing;
+  final bool image;
   final VoidCallback onDragged;
 
-  ThingCard({
+  RectThingCard({
     this.thing,
+    this.image,
     this.onDragged,
     List<Thing> tags,
     List<Thing> targets,
   });
 
   @override
-  _ThingCardState createState() => _ThingCardState();
+  _RectThingCardState createState() => _RectThingCardState();
 }
 
-class _ThingCardState extends State<ThingCard> {
+class _RectThingCardState extends State<RectThingCard> {
   Image thingImage;
   bool isImage = false;
 
@@ -69,14 +71,14 @@ class _ThingCardState extends State<ThingCard> {
             builder: (context, candidateData, rejectedData) {
               return image
                   ? Container(
-                    width: 150,
-                    height: 150,
+                      width: 200,
+                      height: 150,
                       decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage(widget.thing.information), fit: BoxFit.fill),
-                      )
-                  )
+                        shape: BoxShape.rectangle,
+                        image: DecorationImage(
+                            image: AssetImage(widget.thing.information),
+                            fit: BoxFit.fill),
+                      ))
                   : Container(
                       width: 150,
                       height: 150,
