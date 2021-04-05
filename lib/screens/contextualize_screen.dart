@@ -51,20 +51,18 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // tags
-              sideRowCard(widget.tags),
-
+              Row(children: [ sideRowCard(widget.tags) ]),
+              // people, center, places
               Row(
-                // people, center, places
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [ 
-                  sideColumnCard(zion, "Zion"),
+                  Column(children: [ sideColumnCard(zion, "Zion"), sideColumnCard(arches, "Arches")]),
                   centerCardImage(widget.thing),
-                  sideColumnCard(joe, "Joe"),
+                  Column(children: [ sideColumnCard(joe, "Joe"), sideColumnCard(sara, "Sara") ])
                 ]
               ),
-
               // targets
-              sideRowCard(widget.targets),
+              Row(children: [ sideRowCard(widget.targets) ]),
           ]),
         ),
       ),
@@ -73,17 +71,17 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
 
   Widget sideColumnCard(Thing thing, String label) {
     return Padding(
-      padding: EdgeInsets.all(55),
+      padding: EdgeInsets.all(35),
       child: Container(
             margin: EdgeInsets.all(10),
             width: 150,
             height: 150,
             child: ThingCard(
-              thing: thing,
-              onDragged: () {
-                _renderDraggables();
-              },
-            ),
+                thing: thing,
+                onDragged: () {
+                  _renderDraggables();
+                },
+              ),
           ),
           //Text(label, textScaleFactor: 1.5),
     );
@@ -95,17 +93,25 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
         height: 200.0,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children:  
-            things
+        child: Row(children: things
             .map((thing) => ThingCard(
                 thing: thing,
                 onDragged: () {
                   _renderDraggables();
                 }))
             .toList()
-        ),
+        // child: ListView(
+        //   scrollDirection: Axis.horizontal,
+        //   children:  
+            // things
+            // .map((thing) => ThingCard(
+            //     thing: thing,
+            //     onDragged: () {
+            //       _renderDraggables();
+            //     }))
+            // .toList()
+        //),
+      ),
       ),
     );
   }
