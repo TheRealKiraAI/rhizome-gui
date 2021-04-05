@@ -57,9 +57,9 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
                 // people, center, places
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [ 
-                  sideColumnCard(zion, "Zion", arches, "Arches"),
+                  sideColumnCard(zion, "Zion"),
                   centerCardImage(widget.thing),
-                  sideColumnCard(joe, "Joe", sara, "Sara"),
+                  sideColumnCard(joe, "Joe"),
                 ]
               ),
 
@@ -71,12 +71,10 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
     );
   }
 
-  Widget sideColumnCard(Thing thing, String label, Thing thing2, String label2) {
+  Widget sideColumnCard(Thing thing, String label) {
     return Padding(
-      padding: EdgeInsets.all(75),
-      child: Column(
-        children: [
-          Container(
+      padding: EdgeInsets.all(55),
+      child: Container(
             margin: EdgeInsets.all(10),
             width: 150,
             height: 150,
@@ -87,21 +85,7 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
               },
             ),
           ),
-          Text(label, textScaleFactor: 1.5),
-          Container(
-            margin: EdgeInsets.all(10),
-            width: 150,
-            height: 150,
-            child: ThingCard(
-              thing: thing2,
-              onDragged: () {
-                _renderDraggables();
-              },
-            ),
-          ),
-          Text(label2, textScaleFactor: 1.5),
-        ],
-      ),
+          //Text(label, textScaleFactor: 1.5),
     );
   }
 
@@ -138,5 +122,15 @@ class _ContextualizeScreenState extends State<ContextualizeScreen> {
       )
       ),
     );
+
+    // Container(
+    //                 width: 150,
+    //                 height: 150,
+    //                   decoration: BoxDecoration(
+    //                   shape: BoxShape.circle,
+    //                   image: DecorationImage(
+    //                       image: AssetImage(widget.thing.information), fit: BoxFit.fill),
+    //                   )
+    //               )
   }
 }
