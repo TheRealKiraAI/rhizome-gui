@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rhizome_gui/widgets/thing_card.dart';
+import 'package:rhizome_gui/widgets/base_thing_card.dart';
 
 class MoveableThing extends StatefulWidget {
-  final ThingCard thingCard;
+  final BaseThingCard thingCard;
   GlobalKey<NavigatorState> globalKey;
 
   MoveableThing({Key key, this.thingCard, this.globalKey}) : super(key: key);
