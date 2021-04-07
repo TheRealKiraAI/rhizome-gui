@@ -60,20 +60,6 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           ),
         ),
       ),
-      floatingActionButton: _addButton(moabImage),
-    );
-  }
-
-  Widget _addButton(Thing thing) {
-    return FloatingActionButton(
-      onPressed: () => {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ContextualizeScreen(thing: thing)))
-      },
-      child: Icon(Icons.add),
-      backgroundColor: Colors.purple,
     );
   }
 }
