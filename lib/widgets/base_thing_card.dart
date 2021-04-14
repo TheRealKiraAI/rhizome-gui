@@ -41,7 +41,7 @@ class _BaseThingCardState extends State<BaseThingCard> {
     bool accepted = false;
     bool image = _defineImage(widget.thing);
 
-    return LongPressDraggable<dynamic>(
+    return Draggable<dynamic>(
       data: widget.thing,
       child: _thingContainer(accepted, image),
       childWhenDragging: Container(
