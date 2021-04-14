@@ -24,7 +24,7 @@ class _RectThingCardState extends State<RectThingCard> {
   Widget build(BuildContext context) {
     bool accepted = false;
 
-    return LongPressDraggable<dynamic>(
+    return Draggable<dynamic>(
       data: widget.thing,
       child: _thingContainer(accepted),
       childWhenDragging: Container(
