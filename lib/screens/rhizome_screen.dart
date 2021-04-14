@@ -51,14 +51,28 @@ class _RhizomeScreenState extends State<RhizomeScreen> {
           },
           child: Hero(
             tag: moabImage.information,
-            child: Tooltip(
-              message: "Zoom out to explore Rhizome",
-              child: Image(
-                image: AssetImage('assets/images/moab.jpg'),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                fit: BoxFit.fill,
-              ),
+            child: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Image(
+                    image: AssetImage('assets/images/moab.jpg'),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                    'Zoom out to start exploring Rhizome',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32.0),
+                  ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
